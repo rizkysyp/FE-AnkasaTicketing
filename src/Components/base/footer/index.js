@@ -1,13 +1,7 @@
 import React, { Component } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import "./footer.css";
-import Fly from "../img/fly.png";
-import App from "../img/App.png";
-import Play from "../img/Play.png";
-import Fb from "../img/fb.png";
-import Twit from "../img/twit.png";
-import Ig from "../img/ig.png";
-import Yt from "../img/yt.png";
+import Image from "../../../Assets/img";
 
 class Footer extends Component {
   render() {
@@ -18,7 +12,7 @@ class Footer extends Component {
             <div className="container-fluid">
               <div className="row mt-5">
                 <div className=" container m-5 text-start">
-                  <img src={Fly} alt="" />
+                  <img src={Image.Fly} alt="" />
                   <Button
                     className="text text-dark"
                     style={{
@@ -126,7 +120,7 @@ class Footer extends Component {
               style={{ fontWeight: "bold", width: "13rem", marginLeft: "6rem" }}
               variant="outline-light"
             >
-              <img src={App} alt="" />
+              <img src={Image.App} alt="" />
             </Button>
           </div>
           <div className="container-fluid">
@@ -135,7 +129,7 @@ class Footer extends Component {
               style={{ fontWeight: "bold", width: "13rem", marginLeft: "6rem" }}
               variant="outline-light"
             >
-              <img src={Play} alt="" />
+              <img src={Image.Play} alt="" />
             </Button>
           </div>
         </Col>
@@ -152,10 +146,10 @@ class Footer extends Component {
                 </Button>
               </div>
               <div style={{ marginLeft: "2rem" }}>
-                <img src={Fb} alt="" className="sosmed" />
-                <img src={Twit} alt="" className="sosmed" />
-                <img src={Ig} alt="" className="sosmed" />
-                <img src={Yt} alt="" className="sosmed" />
+                <img src={Image.Fb} alt="" className="sosmed" />
+                <img src={Image.Twit} alt="" className="sosmed" />
+                <img src={Image.Ig} alt="" className="sosmed" />
+                <img src={Image.Yt} alt="" className="sosmed" />
               </div>
             </div>
           </div>

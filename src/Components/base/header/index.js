@@ -3,10 +3,7 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import "./style.css";
-import Fly from "../img/fly.png";
-import Message from "../img/message.png";
-import Bell from "../img/bell.png";
-import Img from "../img/img.png";
+import Image from "../../../Assets/img";
 
 function NavbarComponent() {
   const token = localStorage.getItem("token");
@@ -14,7 +11,7 @@ function NavbarComponent() {
     <Navbar bg="light" expand="lg" className="p-3">
       <Container fluid>
         <img
-          src={Fly}
+          src={Image.Fly}
           alt="logo"
           style={{ width: "30px", marginRight: "10px" }}
         />
@@ -63,7 +60,7 @@ function NavbarComponent() {
           >
             <h5>My Booking</h5>
           </Button>
-          {token ? (
+          {!token ? (
             <>
               <Button
                 variant="light"
@@ -74,7 +71,7 @@ function NavbarComponent() {
                 }}
               >
                 <img
-                  src={Message}
+                  src={Image.Message}
                   alt=""
                   style={{
                     verticalAlign: "middle",
@@ -90,7 +87,7 @@ function NavbarComponent() {
                 style={{ width: "4rem", marginRight: "1rem" }}
               >
                 <img
-                  src={Bell}
+                  src={Image.Bell}
                   alt=""
                   style={{
                     verticalAlign: "right",
@@ -104,7 +101,7 @@ function NavbarComponent() {
 
               <Button variant="light" style={{ width: "4rem" }}>
                 <img
-                  src={Img}
+                  src={Image.Img}
                   alt=""
                   style={{
                     verticalAlign: "middle",

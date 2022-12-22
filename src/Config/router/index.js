@@ -6,6 +6,7 @@ import Register from "../../Pages/Register";
 import ForgetPw from "../../Pages/verifOtp/ForgetPw";
 import VerifyOtp from "../../Pages/verifOtp";
 import Landing from "../../Pages/Landing";
+import Profile from "../../Pages/Profile";
 
 const Router = () => {
   return (
@@ -17,6 +18,7 @@ const Router = () => {
         <Route path="/register" element={<Register />} />
         <Route path="/forgetpw" element={<ForgetPw />} />
         <Route path="/otp" element={<VerifyOtp />} />
+        <Route path="/profile" element={<Profile />} />
       </Routes>
     </BrowserRouter>
   );
