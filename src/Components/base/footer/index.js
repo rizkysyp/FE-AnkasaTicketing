@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import { Row, Col, Button } from "react-bootstrap";
 import "./footer.css";
-import Fly from "../img/fly.png";
-import App from "../img/App.png";
-import Play from "../img/Play.png";
-import Fb from "../img/fb.png";
-import Twit from "../img/twit.png";
-import Ig from "../img/ig.png";
-import Yt from "../img/yt.png";
+import Fly from "../../../Assets/img/fly.png";
+import App from "../../../Assets/img/App.png";
+import Play from "../../../Assets/img/Play.png";
+import Fb from "../../../Assets/img/fb.png";
+import Twit from "../../../Assets/img/twit.png";
+import Ig from "../../../Assets/img/ig.png";
+import Yt from "../../../Assets/img/yt.png";
 
 class Footer extends Component {
   render() {
