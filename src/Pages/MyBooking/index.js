@@ -9,7 +9,7 @@ import b1 from '../../Assets/img/b1.png'
 import b2 from '../../Assets/img/b2.png'
 import b3 from '../../Assets/img/b3.png'
 import AccordionC from '../../Components/base/accordion'
-
+import { Link } from 'react-router-dom'
 
 
 export default function MyBooking() {
