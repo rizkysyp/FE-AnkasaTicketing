@@ -1,5 +1,5 @@
 import React from "react";
-import "./detail.css";
+import "./style.module.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import Fly from "../../Assets/img/fly.png";
 import garuda from "../../Assets/img/garuda.png";
