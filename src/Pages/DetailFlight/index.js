@@ -1,5 +1,5 @@
 import React from "react";
-import "./style.css";
+import "./detail.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import Fly from "../../Assets/img/fly.png";
 import garuda from "../../Assets/img/garuda.png";
@@ -269,7 +269,7 @@ function FlightDetail() {
               <div
                 className="card"
                 style={{
-                  height: "28rem",
+                  height: "33rem",
                   width: "40rem",
                   borderRadius: "10px",
                 }}
