@@ -10,11 +10,14 @@ import b2 from '../../Assets/img/b2.png'
 import b3 from '../../Assets/img/b3.png'
 import AccordionC from '../../Components/base/accordion'
 import { Link } from 'react-router-dom'
+import Footer from '../../Components/base/footer'
+import NavbarComponent from '../../Components/base/header'
 
 
 export default function MyBooking() {
     return (
         <div className='container-fluid' style={{ backgroundColor: '#F5F6FA'}}>
+            <NavbarComponent/>
             <div className='container py-5' >
                 <div className='row g-5'>
                     <div className='col-lg-4'>
@@ -94,7 +97,7 @@ export default function MyBooking() {
                     </div>
                 </div>
             </div>
-
+            <Footer/>
         </div>
     )
 }
