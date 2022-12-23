@@ -13,7 +13,7 @@ function FlightDetail() {
       className="container-fluid mb-5"
       style={{
         backgroundColor: " #2395FF",
-        height: "9rem",
+        height: "10rem",
         borderBottomRightRadius: "25%",
         borderBottomLeftRadius: "25%",
         marginBottom: "5rem",
