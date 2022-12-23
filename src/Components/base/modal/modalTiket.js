@@ -6,12 +6,15 @@ import gr from '../../../Assets/img/gr.png'
 import gr3 from '../../../Assets/img/gr3.png'
 import gr6 from '../../../Assets/img/gr6.png'
 import gr8 from '../../../Assets/img/gr8.png'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 
 function MydModalWithGrid(props) {
+    const [startDate, setStartDate] = useState(new Date());
+
     return (
         <Modal {...props} aria-labelledby="contained-modal-title-vcenter">
-
             <Modal.Body className="show-grid" >
                 <Container >
                     <h6>Hey,</h6>
@@ -41,12 +44,9 @@ function MydModalWithGrid(props) {
                          <button  style={{backgroundColor:'#F0F0F0',marginLeft:''}} type="button" className="col-6  btn"><img src={gr} alt=''/></button>
                     </dv>
                     <p className='mt-2'style={{color:'#6B6B6B'}}>Departure</p>
-                    <select className="form-select" aria-label="Default select example">
-                        <option selected >Monday, 20 Juli 2020</option>
-                        <option value="1">One</option>
-                        <option value="2">Two</option>
-                        <option value="3">Three</option>
-                    </select>
+                    <div className='col-12 '>
+                         <DatePicker selected={startDate} onChange={(date) => setStartDate(date)}  className="form-select" />
+                    </div>
                     <p className='mt-2' style={{color:'#6B6B6B'}}>How many person</p>
                     <div className='d-flex'> 
                         <select className="form-select" aria-label="Default select example">
