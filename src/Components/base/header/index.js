@@ -3,10 +3,10 @@ import Container from "react-bootstrap/Container";
 import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import "./style.css";
-import Fly from "../img/fly.png";
-import Message from "../img/message.png";
-import Bell from "../img/bell.png";
-import Img from "../img/img.png";
+import Fly from "../../../Assets/img/fly.png";
+import Message from "../../../Assets/img/message.png";
+import Bell from "../../../Assets/img/bell.png";
+import Img from "../../../Assets/img/img.png";
 
 function NavbarComponent() {
   const token = localStorage.getItem("token");

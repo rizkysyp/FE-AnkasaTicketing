@@ -1,21 +1,21 @@
 import React from "react";
-import "./style.module.css";
+import "./index.module.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import Fly from "../../Assets/img/fly.png";
-import garuda from "../../Assets/img/garuda.png";
+import Garuda from "../../Assets/img/garuda.png";
 import Plan from "../../Assets/img/plan.png";
 import Aten from "../../Assets/img/atten.png";
-import Footer from "../../components/footer";
+import Footer from "../../Components/base/footer";
 
-function FlightDetail() {
+function DetailFlight() {
   return (
     <div
       className="container-fluid mb-5"
       style={{
         backgroundColor: " #2395FF",
         height: "9rem",
-        borderBottomRightRadius: "25%",
-        borderBottomLeftRadius: "25%",
+        borderBottomRightRadius: "2rem",
+        borderBottomLeftRadius: "2rem",
         marginBottom: "5rem",
       }}
     >
@@ -53,7 +53,7 @@ function FlightDetail() {
         <Col>
           <div className="container m-4">
             <div
-              className="wrapp"
+              className="card"
               style={{
                 marginLeft: "1rem",
                 height: "25rem",
@@ -62,7 +62,10 @@ function FlightDetail() {
               }}
             >
               <Form style={{ paddingTop: "2rem" }}>
-                <h5 className="text-secondary" style={{ marginLeft: "2rem" }}>
+                <h5
+                  className="text-secondary text-start"
+                  style={{ marginLeft: "2rem" }}
+                >
                   Full Name
                 </h5>
                 <input
@@ -73,7 +76,7 @@ function FlightDetail() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
-                  className="text-secondary mt-3"
+                  className="text-secondary text-start mt-3"
                   style={{ marginLeft: "2rem" }}
                 >
                   Email
@@ -86,7 +89,7 @@ function FlightDetail() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
-                  className="text-secondary mt-3"
+                  className="text-secondary text-start mt-3"
                   style={{ marginLeft: "2rem" }}
                 >
                   Phone Number
@@ -100,7 +103,16 @@ function FlightDetail() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
               </Form>
-              <div className="info mt-4">
+              <div
+                className="info mt-4"
+                style={{
+                  backgroundColor: "#f0cec3",
+                  width: "19rem",
+                  marginLeft: "15rem",
+                  paddingTop: "1px",
+                  borderRadius: "8px",
+                }}
+              >
                 <img src={Aten} alt="" />
               </div>
             </div>
@@ -113,7 +125,7 @@ function FlightDetail() {
           </h4>
           <div className="container m-4">
             <div
-              className="wrapp"
+              className="card"
               style={{
                 marginLeft: "1rem",
                 height: "25rem",
@@ -129,11 +141,16 @@ function FlightDetail() {
                     width: "46rem",
                     height: "2rem",
                     borderRadius: "8px",
-                    // textAlign: "center",
                   }}
                 >
                   <Container>
-                    <Row>
+                    <Row
+                      style={{
+                        backgroundColor: " #abcfe1",
+                        paddingTop: "5px",
+                        borderRadius: "8px",
+                      }}
+                    >
                       <Col>
                         <div className="all col-12">
                           <h6>Passenger : 1 Adult</h6>
@@ -149,7 +166,7 @@ function FlightDetail() {
                       </Col>
                       <Col>
                         <Form.Check
-                          className="col-10"
+                          className="col-1"
                           type="switch"
                           id="custom-switch"
                           style={{ marginLeft: "12rem" }}
@@ -158,7 +175,10 @@ function FlightDetail() {
                     </Row>
                   </Container>
                 </div>
-                <h5 className="text-secondary" style={{ marginLeft: "2rem" }}>
+                <h5
+                  className="text-secondary text-start"
+                  style={{ marginLeft: "2rem" }}
+                >
                   Title
                 </h5>
                 <input
@@ -169,7 +189,7 @@ function FlightDetail() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
-                  className="text-secondary mt-3"
+                  className="text-secondary text-start mt-3"
                   style={{ marginLeft: "2rem" }}
                 >
                   Full Name
@@ -182,7 +202,7 @@ function FlightDetail() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
-                  className="text-secondary mt-3"
+                  className="text-secondary text-start mt-3"
                   style={{ marginLeft: "2rem" }}
                 >
                   Nationality
@@ -202,6 +222,7 @@ function FlightDetail() {
                   <option value="3">Argentina</option>
                   <option value="4">France</option>
                   <option value="5">Spain</option>
+                  <option value="6">Australia</option>
                 </Form.Select>
               </Form>
             </div>
@@ -213,7 +234,7 @@ function FlightDetail() {
             </h4>
             <div className="container m-2 mt-4">
               <div
-                className="wrapp"
+                className="card"
                 style={{
                   height: "15rem",
                   width: "50rem",
@@ -226,8 +247,12 @@ function FlightDetail() {
                       {["checkbox"].map((type) => (
                         <div
                           key={`inline-${type}`}
-                          className="tick mb-4 text-primary"
-                          style={{ borderBottom: "dark", width: "20rem" }}
+                          className="tick mb-4 text-primary text-start"
+                          style={{
+                            borderBottom: "dark",
+                            width: "20rem",
+                            margin: "1rem",
+                          }}
                         >
                           <Form.Check
                             label="Travel Insurance"
@@ -240,11 +265,19 @@ function FlightDetail() {
                     </Form>
                   </Col>
                   <Col>
-                    <h5 className="main text-end">$ 2,00/pax</h5>
+                    <h5
+                      className="main text-end text-primary"
+                      style={{ margin: "2rem" }}
+                    >
+                      $ 2,00/pax
+                    </h5>
                   </Col>
                   <hr style={{ width: "50rem", marginLeft: "10px" }} />
                   <div>
-                    <h6 className="txt">
+                    <h6
+                      className="txt text-start"
+                      style={{ marginLeft: "1rem" }}
+                    >
                       Get travel compensation up to $ 10.000,00
                     </h6>
                   </div>
@@ -255,7 +288,7 @@ function FlightDetail() {
                   className="btn mt-4 mb-3"
                   variant="primary"
                   size="lg"
-                  style={{ marginLeft: "12em", width: "15em" }}
+                  style={{ marginRight: "3em", width: "15em" }}
                 >
                   Proceed to Payment
                 </Button>
@@ -265,7 +298,7 @@ function FlightDetail() {
         </Col>
         <Col>
           <div>
-            <div className="row container m-4">
+            <div className="row container m-3">
               <div
                 className="card"
                 style={{
@@ -276,26 +309,46 @@ function FlightDetail() {
               >
                 <Row>
                   <Col>
-                    <div className="container mt-4 col-9">
-                      <img src={garuda} alt="" width={120} height={90} />
+                    <div className="container mt-4 mb-1">
+                      <img src={Garuda} alt="" width={120} />
                     </div>
                   </Col>
                   <Col>
-                    <div>
-                      <h4 className="airlines text-center mb-4">
+                    <div
+                      style={{
+                        paddingTop: "3rem",
+                        paddingRight: "3rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      <h4
+                        className="airlines text-center "
+                        style={{
+                          fontWeight: "bold",
+                        }}
+                      >
                         Garuda Indonesia
                       </h4>
                     </div>
                   </Col>
                 </Row>
-                <Row className="fly mt-4" md={4}>
+                <Row className="fly " md={4}>
                   <Col xs={6} md={3}>
-                    <div className="fly col-12" style={{ width: "16rem" }}>
-                      <h4 className="flight">Medan (IDN)</h4>
+                    <div
+                      className="fly"
+                      style={{
+                        width: "16rem",
+                        marginLeft: "rem",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      <h4 className="flight" style={{}}>
+                        Medan (IDN)
+                      </h4>
                     </div>
                   </Col>
                   <Col xs={3}>
-                    <div style={{ marginLeft: "8rem" }}>
+                    <div className="fly" style={{ marginLeft: "10rem" }}>
                       <img src={Plan} alt="" />
                     </div>
                   </Col>
@@ -330,7 +383,8 @@ function FlightDetail() {
                       {["checkbox"].map((type) => (
                         <div
                           key={`inline-${type}`}
-                          className="tick mb-3 text-primary"
+                          className="tick mb-3 text-primary text-start"
+                          style={{ marginLeft: "1rem" }}
                         >
                           <Form.Check
                             label="Refundable"
@@ -349,7 +403,8 @@ function FlightDetail() {
                       {["checkbox"].map((type) => (
                         <div
                           key={`inline-${type}`}
-                          className="tick mb-3 text-primary"
+                          className="tick mb-3 text-primary text-start"
+                          style={{ marginLeft: "1rem" }}
                         >
                           <Form.Check
                             label="Can reschedule"
@@ -367,7 +422,7 @@ function FlightDetail() {
                   <Container>
                     <Row>
                       <Col xs={6} md={4}>
-                        <div className="total mt-2">
+                        <div className="total mt-3">
                           <h4>Total Payment</h4>
                         </div>
                       </Col>
@@ -375,7 +430,7 @@ function FlightDetail() {
                         <Accordion>
                           <Accordion.Item eventKey="0">
                             <Accordion.Header className="text-primary">
-                              <h4 className="payment text-primary text-center">
+                              <h4 className="payment text-primary text-end">
                                 $ 150.00
                               </h4>
                             </Accordion.Header>
@@ -428,4 +483,4 @@ function FlightDetail() {
     </div>
   );
 }
-export default FlightDetail;
+export default DetailFlight;
