@@ -4,6 +4,7 @@ import Form from "react-bootstrap/Form";
 import Navbar from "react-bootstrap/Navbar";
 import "./style.css";
 import Image from "../../../Assets/img";
+import { Link } from "react-router-dom";
 
 function NavbarComponent() {
   const token = localStorage.getItem("token");
@@ -100,6 +101,7 @@ function NavbarComponent() {
               </Button>
 
               <Button variant="light" style={{ width: "4rem" }}>
+                <Link to='/profile'>
                 <img
                   src={Image.Img}
                   alt=""
@@ -110,7 +112,7 @@ function NavbarComponent() {
                     borderRadius: "50%",
                     marginLeft: "-5px",
                   }}
-                />
+                /></Link>
               </Button>
             </>
           ) : (
