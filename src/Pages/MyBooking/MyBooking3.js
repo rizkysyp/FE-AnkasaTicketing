@@ -2,7 +2,6 @@ import React from "react";
 import "./myBooking.css";
 import Barcode from "react-barcode";
 import { Row, Col, Container } from "react-bootstrap";
-import fly from "../../Assets/img/fly.png";
 import Plan from "../../Assets/img/plan.png";
 import Garuda from "../../Assets/img/garuda.png";
 

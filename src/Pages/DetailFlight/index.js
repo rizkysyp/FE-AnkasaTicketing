@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import "./index.module.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import Fly from "../../Assets/img/fly.png";
@@ -6,8 +6,50 @@ import Garuda from "../../Assets/img/garuda.png";
 import Plan from "../../Assets/img/plan.png";
 import Aten from "../../Assets/img/atten.png";
 import Footer from "../../Components/base/footer";
+import { useSelector, useDispatch } from "react-redux";
+import {
+  insertDetailFlight,
+  detailFlight,
+} from "../../Config/redux/actions/detailFlight";
 
 function DetailFlight() {
+  const { DetailFlight } = useSelector((state) => state.detailFlight);
+  const id = detailFlight.id;
+  const dispatch = useDispatch();
+
+  const [dataDetailFlight, setDataDetailFlight] = useState({});
+
+  console.log(dataDetailFlight);
+
+  const handleData = (e) => {
+    e.preventDefault();
+    const localdata = localStorage.getItem("Ankasa");
+    const { token } = JSON.parse(localdata);
+    const formData = new FormData();
+    formData.append("name", dataDetailFlight.fullname);
+    formData.append("email", dataDetailFlight.email);
+    formData.append("phone", dataDetailFlight.phone);
+    formData.append("city", dataDetailFlight.city);
+    formData.append("title", dataDetailFlight.title);
+    formData.append("nationality", dataDetailFlight.nationality);
+    dispatch(insertDetailFlight(id, formData, token));
+    dispatch(detailFlight(token));
+  };
+
+  const handleChange = (e) => {
+    const newdata = { ...dataDetailFlight };
+    newdata[e.target.name] = e.target.value;
+    setDataDetailFlight(newdata);
+  };
+
+  useEffect(() => {
+    const localdata = localStorage.getItem("Ankasa");
+    if (localdata) {
+      const { token } = JSON.parse(localdata);
+      dispatch(DetailFlight(token));
+    }
+  }, []);
+
   return (
     <div
       className="container-fluid mb-5"
@@ -73,6 +115,8 @@ function DetailFlight() {
                   className="form-control"
                   name="name"
                   placeholder=""
+                  onChange={(e) => handleChange(e)}
+                  value={dataDetailFlight.fullname}
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
@@ -86,6 +130,8 @@ function DetailFlight() {
                   className="form-control"
                   name="email"
                   placeholder=""
+                  onChange={(e) => handleChange(e)}
+                  value={dataDetailFlight.email}
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
@@ -100,6 +146,8 @@ function DetailFlight() {
                   className="form-control"
                   name="number"
                   placeholder=""
+                  onChange={(e) => handleChange(e)}
+                  value={dataDetailFlight.phone}
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
               </Form>
@@ -184,6 +232,8 @@ function DetailFlight() {
                 </h5>
                 <Form.Select
                   aria-label="Nationality"
+                  onChange={(e) => handleChange(e)}
+                  value={dataDetailFlight.title}
                   style={{
                     marginLeft: "2rem",
                     width: "47rem",
@@ -205,6 +255,8 @@ function DetailFlight() {
                   className="form-control"
                   name="Name"
                   placeholder=""
+                  onChange={(e) => handleChange(e)}
+                  value={dataDetailFlight.fullname}
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
@@ -215,6 +267,8 @@ function DetailFlight() {
                 </h5>
                 <Form.Select
                   aria-label="Nationality"
+                  onChange={(e) => handleChange(e)}
+                  value={dataDetailFlight.nationality}
                   style={{
                     marginLeft: "2rem",
                     width: "47rem",
@@ -294,6 +348,7 @@ function DetailFlight() {
                   className="btn mt-4 mb-3"
                   variant="primary"
                   size="lg"
+                  onClick={(e) => handleData(e)}
                   style={{ marginRight: "3em", width: "15em" }}
                 >
                   Proceed to Payment
