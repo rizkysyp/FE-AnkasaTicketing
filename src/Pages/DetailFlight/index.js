@@ -25,7 +25,7 @@ function DetailFlight() {
       <Row>
         <Col>
           <h4
-            className="text-light text-left"
+            className="text-light text-start"
             style={{ fontWeight: "bold", marginLeft: "4rem" }}
           >
             Contact Person Details
@@ -51,12 +51,12 @@ function DetailFlight() {
 
       <Row>
         <Col>
-          <div className="container m-4">
+          <div className="container m-3">
             <div
               className="card"
               style={{
                 marginLeft: "1rem",
-                height: "25rem",
+                height: "23rem",
                 width: "50rem",
                 borderRadius: "10px",
               }}
@@ -76,7 +76,7 @@ function DetailFlight() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
-                  className="text-secondary text-start mt-3"
+                  className="text-secondary text-start mt-4"
                   style={{ marginLeft: "2rem" }}
                 >
                   Email
@@ -89,7 +89,7 @@ function DetailFlight() {
                   style={{ marginLeft: "2rem", width: "47rem" }}
                 />
                 <h5
-                  className="text-secondary text-start mt-3"
+                  className="text-secondary text-start mt-4"
                   style={{ marginLeft: "2rem" }}
                 >
                   Phone Number
@@ -107,10 +107,11 @@ function DetailFlight() {
                 className="info mt-4"
                 style={{
                   backgroundColor: "#f0cec3",
-                  width: "19rem",
-                  marginLeft: "15rem",
-                  paddingTop: "1px",
-                  borderRadius: "8px",
+                  width: "40rem",
+                  marginLeft: "5rem",
+                  height: "2rem",
+                  paddingRight: "20rem",
+                  borderRadius: "5px",
                 }}
               >
                 <img src={Aten} alt="" />
@@ -118,7 +119,7 @@ function DetailFlight() {
             </div>
           </div>
           <h4
-            className="title mt-5"
+            className="title mt-5 text-start"
             style={{ fontWeight: "bold", marginLeft: "4rem" }}
           >
             Passenger Details
@@ -159,7 +160,7 @@ function DetailFlight() {
                       <Col>
                         <div
                           className="all col-12"
-                          style={{ marginLeft: "13rem" }}
+                          style={{ marginLeft: "14rem" }}
                         >
                           <h6>Same as contact person</h6>
                         </div>
@@ -181,13 +182,18 @@ function DetailFlight() {
                 >
                   Title
                 </h5>
-                <input
-                  type="text"
-                  className="form-control"
-                  name="name"
-                  placeholder=""
-                  style={{ marginLeft: "2rem", width: "47rem" }}
-                />
+                <Form.Select
+                  aria-label="Nationality"
+                  style={{
+                    marginLeft: "2rem",
+                    width: "47rem",
+                    height: "45px",
+                  }}
+                >
+                  <option>Open Title</option>
+                  <option value="1">Mr.</option>
+                  <option value="2">Mrs.</option>
+                </Form.Select>
                 <h5
                   className="text-secondary text-start mt-3"
                   style={{ marginLeft: "2rem" }}
@@ -216,7 +222,7 @@ function DetailFlight() {
                     marginBottom: "5rem",
                   }}
                 >
-                  <option>Open This Select Nationality</option>
+                  <option>Open Nationality</option>
                   <option value="1">Indonesia</option>
                   <option value="2">Japan</option>
                   <option value="3">Argentina</option>
@@ -227,7 +233,7 @@ function DetailFlight() {
               </Form>
             </div>
             <h4
-              className="title mt-5"
+              className="title mt-5 text-start"
               style={{ fontWeight: "bold", marginLeft: "2rem" }}
             >
               Passenger Details
@@ -302,7 +308,7 @@ function DetailFlight() {
               <div
                 className="card"
                 style={{
-                  height: "33rem",
+                  height: "30rem",
                   width: "40rem",
                   borderRadius: "10px",
                 }}
@@ -457,13 +463,13 @@ function DetailFlight() {
                                   <hr />
                                 </Col>
                                 <Col>
-                                  <h6>$45.65</h6>
+                                  <h6>$ 45.65</h6>
                                   <hr />
-                                  <h6>$22.65</h6>
+                                  <h6>$ 22.65</h6>
                                   <hr />
-                                  <h6>$43.05</h6>
+                                  <h6>$ 43.05</h6>
                                   <hr />
-                                  <h6>$38.65</h6>
+                                  <h6>$ 38.65</h6>
                                   <hr />
                                 </Col>
                               </Row>
