@@ -1,15 +1,16 @@
 import React from "react";
-import "./style.css";
+import "./myBooking.css";
 import Barcode from "react-barcode";
 import { Row, Col, Container } from "react-bootstrap";
-import garuda from "../../Assets/img/garuda.png";
+import fly from "../../Assets/img/fly.png";
 import Plan from "../../Assets/img/plan.png";
+import Garuda from "../../Assets/img/garuda.png";
 
 function MyBarcode() {
   return (
-    <div className="row">
+    <div className="body">
       <div
-        className="border col-1"
+        className="border "
         style={{
           height: "50rem",
           width: "83%",
@@ -17,7 +18,6 @@ function MyBarcode() {
           marginBottom: "6rem",
           marginLeft: "10%",
           marginRight: "10%",
-          justifyItems: "center",
           borderRadius: "10px",
         }}
       >
@@ -25,7 +25,6 @@ function MyBarcode() {
           <h3
             style={{
               fontWeight: "bold",
-              marginLeft: "19rem",
               paddingTop: "3rem",
             }}
           >
@@ -36,7 +35,7 @@ function MyBarcode() {
           className="border"
           style={{
             height: "37rem",
-            width: "52rem",
+            width: "50rem",
             marginTop: "2rem",
             marginBottom: "6rem",
             marginLeft: "20%",
@@ -47,13 +46,19 @@ function MyBarcode() {
           <Container>
             <Row>
               <Col>
-                <div className="container mt-4 col-9">
-                  <img src={garuda} alt="" width={120} height={90} />
+                <div className="mt-4">
+                  <img src={Garuda} alt="" width={120} height={90} />
                 </div>
               </Col>
-
               <Col>
-                <div className="fly " style={{ width: "14rem" }}>
+                <div
+                  className="fly"
+                  style={{
+                    width: "12rem",
+                    paddingLeft: "8rem",
+                    marginTop: "5rem",
+                  }}
+                >
                   <h3 className="flight">IDN</h3>
                 </div>
               </Col>
@@ -66,7 +71,7 @@ function MyBarcode() {
                 className="fly "
                 style={{
                   width: "12rem",
-                  paddingRight: "15rem",
+                  paddingRight: "14rem",
                   marginTop: "5rem",
                 }}
               >
@@ -116,7 +121,7 @@ function MyBarcode() {
               </div>
             </div>
           </Container>
-          <div style={{ marginLeft: "12rem" }}>
+          <div style={{ marginLeft: "1rem" }}>
             <Barcode value="ALVIN JAMAL AZKYA" />
           </div>
         </div>
