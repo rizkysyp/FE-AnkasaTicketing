@@ -34,7 +34,7 @@ export const registerUser = (dataForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_REGISTER_PENDING" });
     const result = await axios.post(
-      `${process.env.REACT_APP_API_BACKEND}user/register`,
+      `${process.env.REACT_APP_API_BACKEND}user/register/customer`,
       dataForm
     );
     const user = result.data.data;
