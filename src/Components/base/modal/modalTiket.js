@@ -98,8 +98,8 @@ function ModalA() {
     const [modalShow, setModalShow] = useState(false);
     return (
         <>
-            <a variant="primary" onClick={() => setModalShow(true)}>
-                Find Ticket
+            <a  style={{color:'black'}} onClick={() => setModalShow(true)}>
+                <b>Find Ticket</b>
             </a>
             <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
         </>

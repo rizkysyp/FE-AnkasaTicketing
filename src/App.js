@@ -2,8 +2,6 @@ import "./App.css";
 import Router from "./Config/router";
 
 
-
-
 function App() {
   return (
     <div>

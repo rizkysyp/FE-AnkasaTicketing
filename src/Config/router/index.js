@@ -7,8 +7,9 @@ import ForgetPw from "../../Pages/verifOtp/ForgetPw";
 import VerifyOtp from "../../Pages/verifOtp";
 import Landing from "../../Pages/Landing";
 import Profile from "../../Pages/Profile";
-import MyBooking from "../../Pages/MyBooking";
+import MyBooking from "../../Pages/MyBooking/myBooking";
 import MyBooking2 from "../../Pages/MyBooking/MyBooking2";
+import MyBarcode from "../../Pages/MyBooking/MyBooking3"
 
 const Router = () => {
   return (
@@ -23,6 +24,7 @@ const Router = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/MyBooking" element={<MyBooking />} />
         <Route path="/MyBooking2" element={<MyBooking2 />} />
+        <Route path="/MyBarcode/:id" element={<MyBarcode />} />
       </Routes>
     </BrowserRouter>
   );
