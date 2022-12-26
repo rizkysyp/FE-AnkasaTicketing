@@ -9,6 +9,8 @@ import Landing from "../../Pages/Landing";
 import Profile from "../../Pages/Profile";
 import MyBooking from "../../Pages/MyBooking";
 import MyBooking2 from "../../Pages/MyBooking/MyBooking2";
+import SearchBooking from "../../Pages/SearchBooking/searchbooking";
+import Ticket from "../../Components/module/Ticket";
 
 const Router = () => {
   return (
@@ -23,6 +25,8 @@ const Router = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/MyBooking" element={<MyBooking />} />
         <Route path="/MyBooking2" element={<MyBooking2 />} />
+        <Route path="/searchbooking" element={<SearchBooking />} />
+        <Route path="/tiket" element={<Ticket />} />
       </Routes>
     </BrowserRouter>
   );

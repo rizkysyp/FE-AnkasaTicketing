@@ -1,0 +1,235 @@
+{
+  "info": {
+    "name": "flyer-be",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "users-customer",
+      "item": [
+        {
+          "name": "register",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "/user/register",
+              "host": ["user"],
+              "path": ["register"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"fullname\": \"Helmi Pradita\",\n  \"email\": \"helmipradita.a@gmail.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "verification",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "/user/verification",
+              "host": ["user"],
+              "path": ["verification"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"helmipraditaa@gmail.com\",\n  \"otp\": \"690313\"\n}"
+            }
+          }
+        },
+        {
+          "name": "login",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "/user/login",
+              "host": ["user"],
+              "path": ["login"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"helmipraditaa@gmail.com\",\n  \"password\": \"123456\"\n}"
+            }
+          }
+        },
+        {
+          "name": "profile",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "/user/profile",
+              "host": ["user"],
+              "path": ["profile"]
+            },
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                { "key": "phone", "value": "085708572498", "type": "default" },
+                {
+                  "key": "city",
+                  "value": "Mojokerto update bangettt",
+                  "type": "default"
+                },
+                {
+                  "key": "address",
+                  "value": "JL Anggrek No 2",
+                  "type": "default"
+                },
+                { "key": "poscode", "value": "61364", "type": "default" },
+                {
+                  "key": "photo",
+                  "src": "/home/helmi/Downloads/Mask Group (1).png",
+                  "type": "file"
+                }
+              ]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjFhOWUxNWY0LTE5MzUtNDg3OC05Y2NhLTBjOGFiMDZjODEyNyIsImZ1bGxuYW1lIjoiSGVsbWkgUHJhZGl0YSIsImVtYWlsIjoiaGVsbWlwcmFkaXRhYUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NzE3MDQ3MTAsImV4cCI6MTY3MTcwODMxMH0.2MJ6dIh4Gnebwyuia-XHQeqIZVJN2xZKrXsloRTGHYc",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "forgot-password",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "/user/forgot-password",
+              "host": ["user"],
+              "path": ["forgot-password"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"helmipraditaa@gmail.com\"\n}"
+            }
+          }
+        },
+        {
+          "name": "profile",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "/user/profile",
+              "host": ["user"],
+              "path": ["profile"]
+            },
+            "auth": {
+              "type": "bearer",
+              "bearer": [
+                {
+                  "key": "token",
+                  "value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjI3NmZlYTQ5LWJkNjktNGNhOS1hODQ1LTNlMDhjMWMyZjUxYyIsImZ1bGxuYW1lIjoiSGVsbWkgUHJhZGl0YSIsImVtYWlsIjoiaGVsbWlwcmFkaXRhYUBnbWFpbC5jb20iLCJyb2xlIjoiY3VzdG9tZXIiLCJpYXQiOjE2NzE1NDY1MjksImV4cCI6MTY3MTU1MDEyOX0.mmoXMKAo4Uvbzjydtdu5OXjw52BHrhMOJ6vFI4E543M",
+                  "type": "string"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "name": "reset-password",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "/user/reset-password/eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbG1pcHJhZGl0YWFAZ21haWwuY29tIiwiaWF0IjoxNjcxNTQ2Mzc5LCJleHAiOjE2NzE1NDk5Nzl9.OwnHfjTrmEQPbXYZj_dZHCTMJduzNr5vDXoj2a7De3M",
+              "host": ["user"],
+              "path": [
+                "reset-password",
+                "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImhlbG1pcHJhZGl0YWFAZ21haWwuY29tIiwiaWF0IjoxNjcxNTQ2Mzc5LCJleHAiOjE2NzE1NDk5Nzl9.OwnHfjTrmEQPbXYZj_dZHCTMJduzNr5vDXoj2a7De3M"
+              ]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"email\": \"helmipraditaa@gmail.com\",\n  \"password\": \"12345\"\n}"
+            }
+          }
+        }
+      ]
+    },
+    {
+      "name": "tickets",
+      "item": [
+        {
+          "name": "insert",
+          "request": {
+            "method": "POST",
+            "url": {
+              "raw": "/ticket/add",
+              "host": ["ticket"],
+              "path": ["add"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"airlines_id\": \"93793e6b-d201-4274-a4cc-7b22ae01646f\",\n  \"departure_city\": \"Surabaya\",\n  \"arrival_city\": \"Jakarta\",\n  \"departure\": \"2022-12-21 12:44:46.273231\",\n  \"arrive\": \"2022-12-21 16:44:46.273231\",\n  \"price\": \"320\",\n  \"stock\": \"10\"\n}"
+            }
+          }
+        },
+        {
+          "name": "getAll",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "/ticket?search=s&limit=10",
+              "query": [
+                { "key": "search", "value": "s" },
+                { "key": "limit", "value": "10" }
+              ],
+              "variable": [],
+              "host": ["ticket"],
+              "path": []
+            }
+          }
+        },
+        {
+          "name": "getById",
+          "request": {
+            "method": "GET",
+            "url": {
+              "raw": "/ticket/5030d3a7-483b-45ab-8be9-44354b482bdc",
+              "host": ["ticket"],
+              "path": ["5030d3a7-483b-45ab-8be9-44354b482bdc"]
+            }
+          }
+        },
+        {
+          "name": "edit",
+          "request": {
+            "method": "PUT",
+            "url": {
+              "raw": "/ticket/5030d3a7-483b-45ab-8be9-44354b482bdc",
+              "host": ["ticket"],
+              "path": ["5030d3a7-483b-45ab-8be9-44354b482bdc"]
+            },
+            "body": {
+              "mode": "raw",
+              "options": { "raw": { "language": "json" } },
+              "raw": "{\n  \"departure_city\": \"Jakarta\",\n  \"arrival_city\": \"Medan\",\n  \"departure\": \"2022-12-21 12:44:46.273231\",\n  \"arrive\": \"2022-12-21 16:44:46.273231\",\n  \"price\": \"320\",\n  \"stock\": \"10\"\n}"
+            }
+          }
+        },
+        {
+          "name": "delete",
+          "request": {
+            "method": "DELETE",
+            "url": {
+              "raw": "/ticket/1ab35840-be0d-427a-9cc5-32a9a136f202",
+              "host": ["ticket"],
+              "path": ["1ab35840-be0d-427a-9cc5-32a9a136f202"]
+            }
+          }
+        }
+      ]
+    }
+  ]
+}
