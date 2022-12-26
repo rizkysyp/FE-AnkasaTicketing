@@ -1,20 +1,15 @@
 import axios from "axios";
 import swal from "sweetalert";
 
-export const getPayment = (token) => async (dispatch) => {
-  // console.log(process.env.REACT_APP_API_BACKEND);
+export const getTicket = (id, token) => async (dispatch) => {
   return new Promise((resolve, reject) => {
     axios
-      .get(
-        `${process.env.REACT_APP_API_BACKEND}ticket/49823683-f59e-4d4a-8244-64dc6fd42741`,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .get(`${process.env.REACT_APP_API_BACKEND}ticket/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((res) => {
-        console.log(res.data);
         dispatch({
           type: "GET_TICKET_ID",
           payload: res.data.data,
@@ -52,20 +47,20 @@ export const getUserProf = (token) => async (dispatch) => {
   });
 };
 
-export const putOrder = (id, formData, token) => async (dispatch) => {
+export const postOrder = (formData, token) => async (dispatch) => {
   try {
-    const result = await axios.put(
-      `${process.env.REACT_APP_API_BACKEND}order/49823683-f59e-4d4a-8244-64dc6fd42741`,
+    const result = await axios.post(
+      `${process.env.REACT_APP_API_BACKEND}order`,
       formData,
       {
-        "content-type": "multipart/form-data",
+        "content-type": "multipart/data",
         headers: {
           Authorization: `Bearer ${token}`,
         },
       }
     );
     const Flight = result.data;
-    dispatch({ type: "PUT_ORDER_ID", payload: Flight });
+    dispatch({ type: "POST_ORDER_ID", payload: Flight });
     swal({
       title: "Thanks!",
       text: `${result.data.message}`,

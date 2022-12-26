@@ -8,14 +8,14 @@ const detailFlightReducer = (state = initialState, action) => {
     case "GET_TICKET_ID":
       return {
         ...state,
-        detailFlight: action.payload,
+        data: action.payload,
       };
     case "GET_USER_PROFILE":
       return {
         ...state,
         detailFlight: action.payload,
       };
-    case "PUT_ORDER_ID":
+    case "POST_ORDER_ID":
       return {
         ...state,
         detailFlight: action.payload,
