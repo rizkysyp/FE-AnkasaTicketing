@@ -4,9 +4,10 @@ import styles from "./profile.module.css";
 import { Link, useNavigate } from "react-router-dom";
 import swal from "sweetalert";
 import Input from "../../base/input";
+import Image from "../../../Assets/img";
 
 const ProfileCard = ({
-  name,
+  fullname,
   city,
   address,
   profImg,
@@ -41,7 +42,7 @@ const ProfileCard = ({
           onChange={onChange}
         />
       </div>
-      <div className={styles.name}>{name ? name : ""}</div>
+      <div className={styles.name}>{fullname ? fullname : ""}</div>
       <div className={styles.address}>
         {city ? city : ""}, {address ? address : ""}
       </div>
@@ -57,37 +58,43 @@ const ProfileCard = ({
         </div>
       </div>
       <div className={styles.menu}>
-        <div className={styles.subMenu}>
-          <div className={styles.user}>
-            <img src="/img/user.svg" alt="" />
+        {/* profile */}
+        <Link to="/profile">
+          <div className="d-flex justify-content-between">
+            <button className="btn">
+              <img src={Image.u9} alt="" />
+            </button>
+            <button className="btn">
+              <img src={Image.b1} alt="" />
+            </button>
           </div>
-          <Link to="/profile">
-            <div>Profile</div>
-          </Link>
+        </Link>
+        {/* my reviuw */}
+        <div className="d-flex justify-content-between">
+          <button className="btn">
+            <img src={Image.u7} alt="" />
+          </button>
+          <button className="btn">
+            <img src={Image.b3} alt="" />
+          </button>
         </div>
-        <div className={styles.subMenu}>
-          <div>
-            <img src="/img/myreview.svg" alt="" />
-          </div>
-          <Link to="">
-            <div>My Review</div>
-          </Link>
+        {/* setting */}
+        <div className="d-flex justify-content-between">
+          <button className="btn">
+            <img src={Image.u8} alt="" />
+          </button>
+          <button className="btn">
+            <img src={Image.b3} alt="" />
+          </button>
         </div>
-        <div className={styles.subMenu}>
-          <div>
-            <img src="/img/setting.svg" alt="" />
-          </div>
-          <Link to="">
-            <div>Settings</div>
-          </Link>
-        </div>
-        <div className={styles.subMenu}>
-          <div>
-            <img src="/img/exit.svg" alt="" />
-          </div>
-          <Link to="">
-            <div onClick={handleLogout}>Logout</div>
-          </Link>
+        {/* logout */}
+        <div className="d-flex justify-content-between" onClick={handleLogout}>
+          <button className="btn">
+            <img src={Image.u6} alt="" />
+          </button>
+          <button className="btn">
+            <img src={Image.b2} alt="" />
+          </button>
         </div>
       </div>
     </div>

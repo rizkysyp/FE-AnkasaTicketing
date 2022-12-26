@@ -42,12 +42,12 @@ const Profile = () => {
     const { token } = JSON.parse(localdata);
     // console.log(id);
     const formData = new FormData();
-    formData.append("name", dataProfile.fullname);
+    formData.append("fullname", dataProfile.fullname);
     formData.append("email", dataProfile.email);
     formData.append("phone", dataProfile.phone);
     formData.append("city", dataProfile.city);
     formData.append("address", dataProfile.address);
-    formData.append("postalCode", dataProfile.poscode);
+    formData.append("poscode", dataProfile.poscode);
     formData.append("photo", file);
     dispatch(editProfile(id, formData, token));
     dispatch(detailProfile(token));
@@ -119,11 +119,12 @@ const Profile = () => {
               <div className={styles.biodata}>
                 <div>Biodata</div>
                 <div>
-                  <label htmlFor="fullname">Fullname</label>
+                  <label htmlFor="fullname">Full name</label>
 
                   <input
                     type="text"
                     name="fullname"
+                    label="Fullname"
                     placeholder={profile.fullname}
                     className={styles.inputProfile}
                     onChange={(e) => handleChange(e)}
@@ -156,10 +157,10 @@ const Profile = () => {
                     type="text"
                     name="poscode"
                     label="Post Code"
-                    placeholder={profile.postalcode}
+                    placeholder={profile.poscode}
                     className={styles.inputProfile}
                     onChange={(e) => handleChange(e)}
-                    value={dataProfile.postalCode}
+                    value={dataProfile.poscode}
                   />
                   <button
                     title="Save"

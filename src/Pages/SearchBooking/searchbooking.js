@@ -14,9 +14,8 @@ const SearchBooking = () => {
   const [sort, setSort] = useState("asc");
   const [selected, setSelected] = useState(null);
   const navigate = useNavigate();
-  const select = (navigate) => {
-    navigate("/profile");
-  };
+  const [isFilter, setIsFilter] = useState(false);
+
   const initialState = {
     ticket: [],
     id: "",
@@ -44,6 +43,63 @@ const SearchBooking = () => {
     getData();
   }, []);
 
+  //search param
+  const [query] = useSearchParams();
+  const queryTransit = query.get("transit") ? query.get("transit") : "";
+  const queryFacilities = query.get("facilities")
+    ? query.get("facilities")
+    : "";
+  const queryDeparture = query.get("departure") ? query.get("departure") : "";
+  const queryArrive = query.get("arrive") ? query.get("arrive") : "";
+  const queryAirlines = query.get("airlines") ? query.get("airlines") : "";
+  const queryMinPrice = query.get("minPrice") ? query.get("minPrice") : "";
+  const queryMaxPrice = query.get("maxPrice") ? query.get("maxPrice") : "";
+  const [transit, setTransit] = useState(queryTransit);
+  const [facilities, setFacilities] = useState(queryFacilities);
+  const [departure, setDeparture] = useState(queryDeparture);
+  const [arrive, setArrive] = useState(queryArrive);
+  const [airline, setAirline] = useState(queryAirlines);
+  const [value, setValue] = useState([0, 100]);
+  const [minPrice, setminPrice] = useState(queryMinPrice);
+  const [maxPrice, setMaxPrice] = useState(queryMaxPrice);
+
+  const search = (e) => {
+    e.preventDefault();
+    setIsFilter(true);
+    dispatch(
+      getData(
+        transit,
+        facilities,
+        departure,
+        arrive,
+        airline,
+        minPrice,
+        maxPrice
+      )
+    );
+    return navigate(
+      `?transit=${transit}&facilities=${facilities}&departure=${departure}&arrive=${arrive}&airline=${airline}&min_price=${minPrice}&max_price=${maxPrice}`
+    );
+  };
+  const handleChange = (event, newValue) => {
+    const values = [];
+    newValue.map((value) => {
+      values.push(value * 100);
+    });
+    setValue(newValue);
+    setminPrice(values[0]);
+    setMaxPrice(values[1]);
+  };
+
+  const reset = () => {
+    setTransit("");
+    setFacilities("");
+    setDeparture("");
+    setArrive("");
+    setAirline("");
+  };
+
+  //end of search
   let tiket = `https://flyer-be-production.up.railway.app/ticket`;
   const getData = () => {
     axios
@@ -69,9 +125,9 @@ const SearchBooking = () => {
       <main>
         <div className="row">
           <HeaderSearch
-          // onClick={(e) => {
-          //   searchBandara(e);
-          // }}
+            onClick={(e) => {
+              search(e);
+            }}
           />
           {/*filter*/}
           <div className="col-log-4 col">
@@ -81,7 +137,7 @@ const SearchBooking = () => {
               </h5>
               <button
                 className="btn btn-transparent text-primary"
-                // onClick={reset}
+                onClick={reset}
               >
                 <b>Reset</b>
               </button>
@@ -117,13 +173,13 @@ const SearchBooking = () => {
                           <input
                             type="checkbox"
                             value="direct"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTransit("direct");
-                            //   } else {
-                            //     setTransit("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setTransit("direct");
+                              } else {
+                                setTransit("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
@@ -131,26 +187,26 @@ const SearchBooking = () => {
                           <input
                             type="checkbox"
                             value="direct"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTransit("transit1");
-                            //   } else {
-                            //     setTransit("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setTransit("transit1");
+                              } else {
+                                setTransit("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           Transit 2+
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTransit("transit2");
-                            //   } else {
-                            //     setTransit("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setTransit("transit2");
+                              } else {
+                                setTransit("");
+                              }
+                            }}
                           />
                         </li>
                       </ul>
@@ -188,13 +244,13 @@ const SearchBooking = () => {
                           <input
                             type="checkbox"
                             value="direct"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setFacilities("lunggage");
-                            //   } else {
-                            //     setFacilities("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFacilities("lunggage");
+                              } else {
+                                setFacilities("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
@@ -202,26 +258,26 @@ const SearchBooking = () => {
                           <input
                             type="checkbox"
                             value="direct"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setFacilities("meal");
-                            //   } else {
-                            //     setFacilities("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFacilities("meal");
+                              } else {
+                                setFacilities("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           Wi-fi
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setFacilities("wifi");
-                            //   } else {
-                            //     setFacilities("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setFacilities("wifi");
+                              } else {
+                                setFacilities("");
+                              }
+                            }}
                           />
                         </li>
                       </ul>
@@ -259,52 +315,52 @@ const SearchBooking = () => {
                           00:00 - 06:00
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setDeparture("mid");
-                            //   } else {
-                            //     setDeparture("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setDeparture("mid");
+                              } else {
+                                setDeparture("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           06:00 - 12:00{" "}
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setDeparture("morning");
-                            //   } else {
-                            //     setDeparture("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setDeparture("morning");
+                              } else {
+                                setDeparture("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           12:00 - 18:00
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setDeparture("afternoon");
-                            //   } else {
-                            //     setDeparture("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setDeparture("afternoon");
+                              } else {
+                                setDeparture("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           18:00 - 24:00
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setDeparture("night");
-                            //   } else {
-                            //     setDeparture("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setDeparture("night");
+                              } else {
+                                setDeparture("");
+                              }
+                            }}
                           />
                         </li>
                       </ul>
@@ -499,9 +555,9 @@ const SearchBooking = () => {
                           <Box>
                             <Slider
                               getAriaLabel={() => "Temperature range"}
+                              value={value}
+                              onChange={handleChange}
                               valueLabelDisplay="auto"
-                              //   value={value}
-                              //   onChange={handleChange}
                             />
                           </Box>
                         </div>
