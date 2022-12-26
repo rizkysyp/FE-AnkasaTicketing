@@ -1,19 +1,49 @@
 import axios from "axios";
 import swal from "sweetalert";
 
-export const detailFlight = (token) => async (dispatch) => {
+export const getPayment = (token) => async (dispatch) => {
+  // console.log(process.env.REACT_APP_API_BACKEND);
   return new Promise((resolve, reject) => {
     axios
-      .get({
-        baseURL: process.env.API_BACKEND,
-        url: `:id`,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .get(
+        `${process.env.REACT_APP_API_BACKEND}ticket/49823683-f59e-4d4a-8244-64dc6fd42741`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then((res) => {
         console.log(res.data);
-        dispatch({ type: "GET_DETAILFLIGHT_ID", payload: res.data.data });
+        dispatch({
+          type: "GET_TICKET_ID",
+          payload: res.data.data,
+        });
+        resolve(res);
+      })
+      .catch((err) => {
+        reject(err);
+      });
+  });
+};
+export const getUserProf = (token) => async (dispatch) => {
+  return new Promise((resolve, reject) => {
+    axios
+      .get(
+        `${process.env.REACT_APP_API_BACKEND}user/profile,
+`,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
+      .then((res) => {
+        console.log(res.data);
+        dispatch({
+          type: "GET_USER_PROFILE",
+          payload: res.data.data,
+        });
         resolve(res);
       })
       .catch((err) => {
@@ -22,10 +52,10 @@ export const detailFlight = (token) => async (dispatch) => {
   });
 };
 
-export const insertDetailFlight = (id, formData, token) => async (dispatch) => {
+export const putOrder = (id, formData, token) => async (dispatch) => {
   try {
     const result = await axios.put(
-      `${process.env.API_BACKEND}ticket`,
+      `${process.env.REACT_APP_API_BACKEND}order/49823683-f59e-4d4a-8244-64dc6fd42741`,
       formData,
       {
         "content-type": "multipart/form-data",
@@ -35,9 +65,9 @@ export const insertDetailFlight = (id, formData, token) => async (dispatch) => {
       }
     );
     const Flight = result.data;
-    dispatch({ type: "INSERT_DETAILFLIGHT", payload: Flight });
+    dispatch({ type: "PUT_ORDER_ID", payload: Flight });
     swal({
-      title: "Good job!",
+      title: "Thanks!",
       text: `${result.data.message}`,
       icon: "success",
     });

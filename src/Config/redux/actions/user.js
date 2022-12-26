@@ -5,7 +5,7 @@ export const loginUser = (loginData, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_LOGIN_PENDING" });
     const result = await axios.post(
-      `${process.env.API_BACKEND}user/login`,
+      `${process.env.REACT_APP_API_BACKEND}user/login`,
       loginData
     );
     const user = result.data.data;
@@ -34,14 +34,14 @@ export const registerUser = (dataForm, navigate) => async (dispatch) => {
   try {
     dispatch({ type: "USER_REGISTER_PENDING" });
     const result = await axios.post(
-      `${process.env.API_BACKEND_REGIS}`,
+      `${process.env.REACT_APP_API_BACKEND}user/register/`,
       dataForm
     );
     const user = result.data.data;
     console.log(user);
     console.log(result.data.data);
     dispatch({ type: "USER_REGISTER_SUCCESS", payload: user });
-    navigate("/otp");
+    navigate("/verifOtp");
   } catch (error) {
     console.log(error);
     dispatch({ type: "USER_REGISTER_ERROR" });
@@ -55,7 +55,7 @@ export const registerUser = (dataForm, navigate) => async (dispatch) => {
 export const VerifOtp = (data, navigate) => async (dispacth) => {
   try {
     const result = await axios.post(
-      `${process.env.API_BACKEND}user/verification`,
+      `${process.env.REACT_APP_API_BACKEND}user/verification`,
       data
     );
     const user = result.data.data;
@@ -69,25 +69,25 @@ export const VerifOtp = (data, navigate) => async (dispacth) => {
     console.log(err);
   }
 };
-// export const ForgotPw = (data, navigate) => async (dispatch) => {
-//   try {
-//     dispatch({ type: "USER_REGISTER_PENDING" });
-//     const result = await axios.post(
-//       `${process.env.API_BACKEND}user/forgot-password`,
-//       data
-//     );
-//     const user = result.data.data;
-//     console.log(user);
-//     console.log(result.data.data);
-//     dispatch({ type: "CONFIRM_EMAIL_SUCCESS", payload: user });
-//     navigate("/login");
-//   } catch (error) {
-//     console.log(error);
-//     dispatch({ type: "CONFIRM_EMAIL_ERROR" });
-//     swal({
-//       title: "Oops!",
-//       text: `${error.response.data.message}`,
-//       icon: "error",
-//     });
-//   }
-// };
+export const ForgotPw = (data, navigate) => async (dispatch) => {
+  try {
+    dispatch({ type: "USER_REGISTER_PENDING" });
+    const result = await axios.post(
+      `${process.env.REACT_APP_API_BACKEND}user/forgot-password`,
+      data
+    );
+    const user = result.data.data;
+    console.log(user);
+    console.log(result.data.data);
+    dispatch({ type: "CONFIRM_EMAIL_SUCCESS", payload: user });
+    navigate("/login");
+  } catch (error) {
+    console.log(error);
+    dispatch({ type: "CONFIRM_EMAIL_ERROR" });
+    swal({
+      title: "Oops!",
+      text: `${error.response.data.message}`,
+      icon: "error",
+    });
+  }
+};

@@ -5,12 +5,17 @@ const initialState = {
 
 const detailFlightReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "GET_DETAILFLIGHT_ID":
+    case "GET_TICKET_ID":
       return {
         ...state,
         detailFlight: action.payload,
       };
-    case "EDIT_DETAILFLIGHT":
+    case "GET_USER_PROFILE":
+      return {
+        ...state,
+        detailFlight: action.payload,
+      };
+    case "PUT_ORDER_ID":
       return {
         ...state,
         detailFlight: action.payload,

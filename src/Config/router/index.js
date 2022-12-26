@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DetailFlight from "../../Pages/DetailFlight";
-import MyBarcode from "../../Pages/MyBooking/myBooking3";
+import MyBarcode from "../../Pages/MyBooking/MyBooking3";
 import Login from "../../Pages/Login";
 import LogoLogin from "../../Components/base/logo/logoAuth";
 import Register from "../../Pages/Register";

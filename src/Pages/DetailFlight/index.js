@@ -8,13 +8,14 @@ import Aten from "../../Assets/img/atten.png";
 import Footer from "../../Components/base/footer";
 import { useSelector, useDispatch } from "react-redux";
 import {
-  insertDetailFlight,
-  detailFlight,
+  putOrder,
+  getPayment,
+  getUserProf,
 } from "../../Config/redux/actions/detailFlight";
 
-function DetailFlight() {
+function DetailFlightPage() {
   const { DetailFlight } = useSelector((state) => state.detailFlight);
-  const id = detailFlight.id;
+  const id = "";
   const dispatch = useDispatch();
 
   const [dataDetailFlight, setDataDetailFlight] = useState({});
@@ -30,13 +31,15 @@ function DetailFlight() {
     formData.append("email", dataDetailFlight.email);
     formData.append("phone", dataDetailFlight.phone);
     formData.append("city", dataDetailFlight.city);
-    formData.append("title", dataDetailFlight.title);
-    formData.append("nationality", dataDetailFlight.nationality);
-    dispatch(insertDetailFlight(id, formData, token));
-    dispatch(detailFlight(token));
+    formData.append("tittle", dataDetailFlight.tittle);
+    formData.append("country", dataDetailFlight.country);
+    dispatch(putOrder(id, formData, token));
+    dispatch(getPayment(token));
+    dispatch(getUserProf(token));
   };
 
   const handleChange = (e) => {
+    console.log(e.target);
     const newdata = { ...dataDetailFlight };
     newdata[e.target.name] = e.target.value;
     setDataDetailFlight(newdata);
@@ -46,7 +49,7 @@ function DetailFlight() {
     const localdata = localStorage.getItem("Ankasa");
     if (localdata) {
       const { token } = JSON.parse(localdata);
-      dispatch(DetailFlight(token));
+      dispatch(getPayment(token));
     }
   }, []);
 
@@ -231,9 +234,10 @@ function DetailFlight() {
                   Title
                 </h5>
                 <Form.Select
-                  aria-label="Nationality"
+                  aria-label="tittle"
+                  name="tittle"
                   onChange={(e) => handleChange(e)}
-                  value={dataDetailFlight.title}
+                  value={dataDetailFlight.tittle}
                   style={{
                     marginLeft: "2rem",
                     width: "47rem",
@@ -241,8 +245,8 @@ function DetailFlight() {
                   }}
                 >
                   <option>Open Title</option>
-                  <option value="1">Mr.</option>
-                  <option value="2">Mrs.</option>
+                  <option value="Mr.">Mr.</option>
+                  <option value="Mrs.">Mrs.</option>
                 </Form.Select>
                 <h5
                   className="text-secondary text-start mt-3"
@@ -263,12 +267,13 @@ function DetailFlight() {
                   className="text-secondary text-start mt-3"
                   style={{ marginLeft: "2rem" }}
                 >
-                  Nationality
+                  Country
                 </h5>
                 <Form.Select
-                  aria-label="Nationality"
+                  aria-label="country"
+                  name="country"
                   onChange={(e) => handleChange(e)}
-                  value={dataDetailFlight.nationality}
+                  value={dataDetailFlight.country}
                   style={{
                     marginLeft: "2rem",
                     width: "47rem",
@@ -276,13 +281,13 @@ function DetailFlight() {
                     marginBottom: "5rem",
                   }}
                 >
-                  <option>Open Nationality</option>
-                  <option value="1">Indonesia</option>
-                  <option value="2">Japan</option>
-                  <option value="3">Argentina</option>
-                  <option value="4">France</option>
-                  <option value="5">Spain</option>
-                  <option value="6">Australia</option>
+                  <option>Open Country</option>
+                  <option value="Indonesia">Indonesia</option>
+                  <option value="Japan">Japan</option>
+                  <option value="Argentina">Argentina</option>
+                  <option value="France">France</option>
+                  <option value="Spain">Spain</option>
+                  <option value="Australia">Australia</option>
                 </Form.Select>
               </Form>
             </div>
@@ -296,14 +301,14 @@ function DetailFlight() {
               <div
                 className="card"
                 style={{
-                  height: "15rem",
+                  height: "12rem",
                   width: "50rem",
                   borderRadius: "10px",
                 }}
               >
                 <Row>
                   <Col>
-                    <Form style={{ paddingTop: "2rem" }}>
+                    <Form style={{ paddingTop: "1rem" }}>
                       {["checkbox"].map((type) => (
                         <div
                           key={`inline-${type}`}
@@ -384,6 +389,7 @@ function DetailFlight() {
                     >
                       <h4
                         className="airlines text-center "
+                        onChange={(e) => handleChange(e)}
                         style={{
                           fontWeight: "bold",
                         }}
@@ -403,18 +409,26 @@ function DetailFlight() {
                         fontWeight: "bold",
                       }}
                     >
-                      <h4 className="flight" style={{}}>
+                      <h4
+                        className="flight"
+                        onChange={(e) => handleChange(e)}
+                        style={{}}
+                      >
                         Medan (IDN)
                       </h4>
                     </div>
                   </Col>
                   <Col xs={3}>
-                    <div className="fly" style={{ marginLeft: "10rem" }}>
-                      <img src={Plan} alt="" />
+                    <div className="fly" style={{ marginLeft: "8rem" }}>
+                      <img src={Plan} alt="" height={20} />
                     </div>
                   </Col>
                   <Col xs={6} md={4}>
-                    <div className="fly col-12" style={{ width: "16rem" }}>
+                    <div
+                      className="fly col-12"
+                      onChange={(e) => handleChange(e)}
+                      style={{ width: "16rem" }}
+                    >
                       <h4 className="flight">Tokyo (JPN)</h4>
                     </div>
                   </Col>
@@ -429,12 +443,14 @@ function DetailFlight() {
                 >
                   <Col>
                     <div>
-                      <p>Sunday, 15 August 2020</p>
+                      <p onChange={(e) => handleChange(e)}>
+                        Sunday, 15 August 2020
+                      </p>
                     </div>
                   </Col>
                   <Col>
                     <div>
-                      <p>12:33 - 15:21</p>
+                      <p onChange={(e) => handleChange(e)}>12:33 - 15:21</p>
                     </div>
                   </Col>
                 </Row>
@@ -544,4 +560,4 @@ function DetailFlight() {
     </div>
   );
 }
-export default DetailFlight;
+export default DetailFlightPage;
