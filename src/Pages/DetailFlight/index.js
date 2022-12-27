@@ -3,7 +3,7 @@ import "./index.module.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import NavbarComponent from "../../Components/base/header/index";
 import Fly from "../../Assets/img/fly.png";
-import Garuda from "../../Assets/img/garuda.png";
+// import Garuda from "../../Assets/img/garuda.png";
 import Plan from "../../Assets/img/plan.png";
 import Aten from "../../Assets/img/atten.png";
 import Footer from "../../Components/base/footer";
@@ -22,7 +22,7 @@ function DetailFlightPage() {
 
   const [dataDetailFlight, setDataDetailFlight] = useState({});
   const [profile, setProfile] = useState({});
-  const [order, setOrder] = useState({});
+  // const [order, setOrder] = useState({});
 
   const handleData = (e) => {
     e.preventDefault();
@@ -31,10 +31,11 @@ function DetailFlightPage() {
     const ticketId = searchParams.get("id");
     const dataPost = {
       ...dataDetailFlight,
-      id_airlines: data.id,
+      id_airlines: data.id_airlines,
       id_users: profile.id,
       id_ticket: ticketId,
     };
+    // console.log(data);
     dispatch(postOrder(dataPost, token));
   };
 
@@ -55,10 +56,10 @@ function DetailFlightPage() {
   }, []);
 
   return (
-    <div className="body">
+    <div className="body ">
       <NavbarComponent />
       <div
-        className="container-fluid mb-5"
+        className="-fluid mb-5 p-5 "
         style={{
           backgroundColor: " #2395FF",
           height: "9rem",
@@ -99,7 +100,7 @@ function DetailFlightPage() {
 
         <Row>
           <Col>
-            <div className="container m-3">
+            <div className=" m-3">
               <div
                 className="card"
                 style={{
@@ -184,7 +185,7 @@ function DetailFlightPage() {
             >
               Passenger Details
             </h4>
-            <div className="container m-4">
+            <div className=" m-4">
               <div
                 className="card"
                 style={{
@@ -310,7 +311,7 @@ function DetailFlightPage() {
               >
                 Passenger Details
               </h4>
-              <div className="container m-2 mt-4">
+              <div className=" m-2 mt-4">
                 <div
                   className="card"
                   style={{
@@ -377,7 +378,7 @@ function DetailFlightPage() {
           </Col>
           <Col>
             <div>
-              <div className="row container m-3">
+              <div className="row  m-3">
                 <div
                   className="card"
                   style={{
@@ -388,7 +389,7 @@ function DetailFlightPage() {
                 >
                   <Row>
                     <Col>
-                      <div className="container mt-4 mb-1">
+                      <div className=" mt-4 mb-1">
                         <img src={data.airlines_logo} alt="" width={120} />
                       </div>
                     </Col>
