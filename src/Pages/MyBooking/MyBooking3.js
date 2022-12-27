@@ -1,8 +1,7 @@
 import React from "react";
-import "./myBooking.css";
+import "./MyBooking.css";
 import Barcode from "react-barcode";
 import { Row, Col, Container } from "react-bootstrap";
-import fly from "../../Assets/img/fly.png";
 import Plan from "../../Assets/img/plan.png";
 import Garuda from "../../Assets/img/garuda.png";
 
@@ -34,12 +33,11 @@ function MyBarcode() {
         <div
           className="border"
           style={{
-            height: "37rem",
+            height: "38rem",
             width: "50rem",
             marginTop: "2rem",
             marginBottom: "6rem",
             marginLeft: "20%",
-            justifyItems: "center",
             borderRadius: "10px",
           }}
         >
@@ -56,15 +54,14 @@ function MyBarcode() {
                   style={{
                     width: "12rem",
                     paddingLeft: "8rem",
-                    marginTop: "5rem",
                   }}
                 >
                   <h3 className="flight">IDN</h3>
                 </div>
               </Col>
               <Col>
-                <div style={{ marginTop: "5rem" }}>
-                  <img src={Plan} alt="" height={30} />
+                <div className="fly">
+                  <img src={Plan} alt="" height={28} />
                 </div>
               </Col>
               <div
@@ -72,7 +69,6 @@ function MyBarcode() {
                 style={{
                   width: "12rem",
                   paddingRight: "14rem",
-                  marginTop: "5rem",
                 }}
               >
                 <h3 className="flight">JPN</h3>
@@ -80,7 +76,7 @@ function MyBarcode() {
             </Row>
             <Row>
               <Col>
-                <div className="add text-secondary mt-4">
+                <div className="add text-secondary mt-5">
                   <h6>Code</h6>
                   <div className="text-dark">
                     <h4>AB-221</h4>

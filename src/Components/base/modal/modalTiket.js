@@ -152,7 +152,7 @@ function ModalA() {
   return (
     <>
       <a variant="primary" onClick={() => setModalShow(true)}>
-        Find Ticket
+        <b>Find Ticket</b>
       </a>
       <MydModalWithGrid show={modalShow} onHide={() => setModalShow(false)} />
     </>

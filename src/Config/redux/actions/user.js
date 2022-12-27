@@ -41,7 +41,7 @@ export const registerUser = (dataForm, navigate) => async (dispatch) => {
     console.log(user);
     console.log(result.data.data);
     dispatch({ type: "USER_REGISTER_SUCCESS", payload: user });
-    navigate("/otp");
+    navigate("/verifOtp");
   } catch (error) {
     console.log(error);
     dispatch({ type: "USER_REGISTER_ERROR" });

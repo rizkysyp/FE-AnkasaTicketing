@@ -20,23 +20,16 @@
 }
 .payment {
   font-weight: bold;
-  padding-left: 6rem;
+  padding-left: 7rem;
 }
 
 .flight {
   font-weight: bold;
 }
 
-.airlines {
-  margin-right: 7rem;
-  margin-top: 3rem;
-  font-weight: bold;
-}
-
 .fly {
   text-align: center;
   font-weight: bold;
-  size: 0ch;
 }
 
 .txt {

@@ -4,6 +4,7 @@ import profileReducer from "./profile";
 import boockingTicketReducer from "./boockingTicket";
 import airportReducer from "./airport";
 import boockingTicketIdReducer from "./bookingId";
+import detailFlightReducer from "./detailFlight";
 
 const rootReducer = combineReducers({
   user: userReducer,
@@ -11,6 +12,7 @@ const rootReducer = combineReducers({
   ticket: boockingTicketReducer,
   airport: airportReducer,
   ticketId: boockingTicketIdReducer,
+  detailFlight: detailFlightReducer,
 });
 
 export default rootReducer;

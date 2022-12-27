@@ -1,5 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import DetailFlight from "../../Pages/DetailFlight";
+import MyBarcode from "../../Pages/MyBooking/MyBooking3";
 import Login from "../../Pages/Login";
 import LogoLogin from "../../Components/base/logo/logoAuth";
 import Register from "../../Pages/Register";
@@ -11,14 +13,16 @@ import MyBooking from "../../Pages/MyBooking/myBooking";
 import MyBooking2 from "../../Pages/MyBooking/MyBooking2";
 import SearchBooking from "../../Pages/SearchBooking/searchbooking";
 import Ticket from "../../Components/module/Ticket";
-import MyBarcode from "../../Pages/MyBooking/myBooking3";
 
 const Router = () => {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-        <Route path="/login" element={<Login />} />
+
+        <Route path="/DetailFlight" element={<DetailFlight />} />
+        <Route path="/MyBooking" element={<MyBarcode />} />
+        <Route path="/Login" element={<Login />} />
         <Route path="/logo" element={<LogoLogin />} />
         <Route path="/register" element={<Register />} />
         <Route path="/forgetpw" element={<ForgetPw />} />
@@ -29,6 +33,8 @@ const Router = () => {
         <Route path="/searchbooking" element={<SearchBooking />} />
         <Route path="/tiket" element={<Ticket />} />
         <Route path="/MyBarcode/:id" element={<MyBarcode />} />
+        <Route path="/Register" element={<Register />} />
+        <Route path="/verifOtp" element={<VerifyOtp />} />
       </Routes>
     </BrowserRouter>
   );

@@ -24,94 +24,90 @@ function NavbarComponent() {
   }, []);
 
   return (
-    <div className="container-fluid bg-white">
-      <div className="container py-3 bg-white">
-        <div className="row d-flex justify-content-between ">
-          <div className="col-lg-3 col-3">
-            <div className="d-flex mt-3 mt-lg-4">
-              <img
-                src={Image.Fly}
-                alt="logo"
-                style={{ width: "30px", marginRight: "10px" }}
-              />
+    <div className=" bg-white">
+      <div className="row d-flex justify-content-between">
+        <div className="col-lg-2 px-3 d-flex align-content-center flex-wrap justify-content-start">
+          <img
+            src={Image.Fly}
+            alt="logo"
+            style={{ width: "30px", marginRight: "10px" }}
+          />
+          <NavLink
+            to="/"
+            style={{
+              color: "black",
+              fontWeight: "bold",
+              textDecoration: "none",
+            }}
+          >
+            <h5>Ankasa</h5>
+          </NavLink>
+        </div>
+        <div className="col-lg-4 d-flex align-content-center flex-wrap">
+          <Form.Control
+            className=""
+            type="search"
+            placeholder="Where you want to go?"
+            aria-label="Search"
+          />
+        </div>
+        <div className="col-lg-6 d-flex justify-content-end px-5">
+          <Navbar expand="lg" className="">
+            <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+            <Navbar.Collapse>
+              <button className="btn">
+                <MydModalWithGrid />
+              </button>
               <NavLink
-                to="/"
-                style={{
-                  color: "black",
-                  fontWeight: "bold",
-                  textDecoration: "none",
-                }}
+                to="/MyBooking"
+                style={{ textDecoration: "none", color: "black" }}
+                className="px-lg-5 mt-lg-1"
               >
-                <h5>Ankasa</h5>
+                <h6> My Booking</h6>
               </NavLink>
-            </div>
-          </div>
-          <div className="col-lg-3 col-5 mt-2 mt-lg-3">
-            <Form.Control
-              className=""
-              type="search"
-              placeholder="Where you want to go?"
-              aria-label="Search"
-            />
-          </div>
-          <div className="col-lg-6 col-3 justify-content-between">
-            <Navbar expand="lg" className="">
-              <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-              <Navbar.Collapse>
-                <button className="btn ">
-                  <MydModalWithGrid />
-                </button>
-                <NavLink
-                  to="/MyBooking"
-                  style={{ textDecoration: "none", color: "black" }}
-                  className="px-lg-3 mt-lg-1"
-                >
-                  <h6> My Booking</h6>
-                </NavLink>
-                {token ? (
-                  <div className="mx-lg-5 px-lg-4 ">
-                    <MyModalTicket />
-                    <MyVerticallyCenteredModal />
-                    <Button variant="white" style={{ width: "4rem" }}>
-                      <Link to="/profile">
-                        <img
-                          src={profile.photo}
-                          alt=""
-                          style={{
-                            verticalAlign: "middle",
-                            height: "40px",
-                            borderRadius: "50%",
-                            marginLeft: "-5px",
-                          }}
-                        />
-                      </Link>
+              {token ? (
+                <div className=" px-lg-4 d-flex justify-content-end">
+                  <MyModalTicket />
+                  <MyVerticallyCenteredModal />
+                  <Button variant="white" style={{ width: "4rem" }}>
+                    <Link to="/profile">
+                      <img
+                        src={profile.photo}
+                        alt=""
+                        style={{
+                          verticalAlign: "middle",
+                          height: "40px",
+                          borderRadius: "50%",
+                          marginLeft: "-5px",
+                        }}
+                      />
+                    </Link>
+                  </Button>
+                </div>
+              ) : (
+                <div className="d-lg-flex d-flex justify-content-end">
+                  <Link to="/login">
+                    <Button
+                      id="responsive-navbar-nav"
+                      className="btn-1 px-lg-4"
+                      variant="primary"
+                    >
+                      Login
                     </Button>
-                  </div>
-                ) : (
-                  <div className="d-lg-flex px-lg-5">
-                    <Link to="/login">
-                      <Button
-                        id="responsive-navbar-nav"
-                        className="btn-1 px-lg-4"
-                        variant="primary"
-                      >
-                        Login
-                      </Button>
-                    </Link>
+                  </Link>
 
-                    <Link to="/Register">
-                      <Button
-                        className="btn-1  px-lg-4"
-                        variant="outline-primary"
-                      >
-                        Sign Up
-                      </Button>
-                    </Link>
-                  </div>
-                )}
-              </Navbar.Collapse>
-            </Navbar>
-          </div>
+                  <Link to="/Register">
+                    <Button
+                      className="btn-1  px-lg-4"
+                      variant="outline-primary"
+                    >
+                      Sign Up
+                    </Button>
+                  </Link>
+                </div>
+              )}
+            </Navbar.Collapse>
+          </Navbar>
         </div>
       </div>
     </div>

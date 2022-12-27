@@ -14,10 +14,10 @@ import NavbarComponent from "../../Components/base/header";
 
 export default function Landing() {
   return (
-    <div className="container-fluid">
+    <div className="p-5">
       <NavbarComponent />
-      <div className="row mt-5">
-        <div className="col-8 ">
+      <div className="row mt-5 d-flex justify-content-between">
+        <div className="col-6 ">
           <div className="p-5">
             <h1>
               Find your{" "}
@@ -29,9 +29,13 @@ export default function Landing() {
           </div>
           <img src={k8} alt="" className="img-fluid" />
         </div>
-        <div className="col-4 ">
-          <img src={k7} alt="" className="img-fluid " />
-          <img src={i3} alt="" className="p-lg-5 p-3 img-fluid" />
+        <div className="col-6 d-flex flex-column ">
+          <div className="d-flex justify-content-end">
+            <img src={k7} alt="" className="img-fluid " />
+          </div>
+          <div className="d-flex justify-content-end">
+            <img src={i3} alt="" className="p-lg-5 p-3 img-fluid" />
+          </div>
         </div>
       </div>
       <div className="container">

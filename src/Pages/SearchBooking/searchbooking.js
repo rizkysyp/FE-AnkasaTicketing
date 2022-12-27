@@ -7,14 +7,13 @@ import Footer from "../../Components/base/footer";
 import Ticket from "../../Components/module/Ticket";
 import HeaderSearch from "../../Components/base/header/search";
 import axios from "axios";
-
+import swal from "sweetalert";
 const SearchBooking = () => {
   const [data, setData] = useState([]);
   const [sortBy, setSortBy] = useState("name");
   const [sort, setSort] = useState("asc");
   const [selected, setSelected] = useState(null);
   const navigate = useNavigate();
-  const [isFilter, setIsFilter] = useState(false);
 
   const initialState = {
     ticket: [],
@@ -35,7 +34,7 @@ const SearchBooking = () => {
   const [dispatch] = useReducer(reducer, {});
 
   const handleClickTiket = (id) => {
-    navigate("/flightdetail");
+    navigate("/DetailFlight");
     dispatch({ type: "GWT_TICKET_ID", payload: id });
   };
 
@@ -62,6 +61,9 @@ const SearchBooking = () => {
   const [value, setValue] = useState([0, 100]);
   const [minPrice, setminPrice] = useState(queryMinPrice);
   const [maxPrice, setMaxPrice] = useState(queryMaxPrice);
+  const [isFilter, setIsFilter] = useState(false);
+
+  console.log(transit);
 
   const search = (e) => {
     e.preventDefault();
@@ -100,10 +102,20 @@ const SearchBooking = () => {
   };
 
   //end of search
-  let tiket = `https://flyer-be-production.up.railway.app/ticket`;
-  const getData = () => {
+  // let tiket = `https://flyer-be-production.up.railway.app/ticket?transit=${transit}&facilities=${facilities}&departure=${departure}&arrive=${arrive}&airline=${airline}&min_price=${minPrice}&max_price=${maxPrice}`;
+  const getData = (
+    transit = "",
+    facilities = "",
+    departure = "",
+    arrive = "",
+    airline = "",
+    minPrice = "",
+    maxPrice = ""
+  ) => {
     axios
-      .get(tiket)
+      .get(
+        `https://flyer-be-production.up.railway.app/ticket?transit=${transit}&facilities=${facilities}&departure=${departure}&arrive=${arrive}&airline=${airline}&min_price=${minPrice}&max_price=${maxPrice}`
+      )
       .then((res) => {
         console.log("get data success");
         console.log(res.data.data);
@@ -112,7 +124,11 @@ const SearchBooking = () => {
         // dispatch({ type: "GET_TICKET_ID", payload: res.data });
       })
       .catch((err) => {
-        console.log("get data fail");
+        swal({
+          title: "Oops!",
+          text: `${err.response.data.message}`,
+          icon: "error",
+        });
         console.log(err);
         setData([]);
       });
@@ -246,7 +262,7 @@ const SearchBooking = () => {
                             value="direct"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setFacilities("lunggage");
+                                setFacilities("luggage");
                               } else {
                                 setFacilities("");
                               }
@@ -398,52 +414,52 @@ const SearchBooking = () => {
                           00:00 - 06:00
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTimeArrive("mid");
-                            //   } else {
-                            //     setTimeArrive("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setArrive("mid");
+                              } else {
+                                setArrive("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           06:00 - 12:00{" "}
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTimeArrive("morning");
-                            //   } else {
-                            //     setTimeArrive("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setArrive("morning");
+                              } else {
+                                setArrive("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           12:00 - 18:00
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTimeArrive("afternoon");
-                            //   } else {
-                            //     setTimeArrive("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setArrive("afternoon");
+                              } else {
+                                setArrive("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           18:00 - 24:00
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setTimeArrive("night");
-                            //   } else {
-                            //     setTimeArrive("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setArrive("night");
+                              } else {
+                                setArrive("");
+                              }
+                            }}
                           />
                         </li>
                       </ul>
@@ -481,39 +497,39 @@ const SearchBooking = () => {
                           Garuda Indonesia
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setAirlines("Garuda Indonesia");
-                            //   } else {
-                            //     setAirlines("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setAirline("Garuda Indonesia");
+                              } else {
+                                setAirline("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           Air Asia{" "}
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setAirlines("Air Asia");
-                            //   } else {
-                            //     setAirlines("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setAirline("Air Asia");
+                              } else {
+                                setAirline("");
+                              }
+                            }}
                           />
                         </li>
                         <li className="d-flex justify-content-between">
                           Lion Air
                           <input
                             type="checkbox"
-                            // onChange={(e) => {
-                            //   if (e.target.checked) {
-                            //     setAirlines("Fly Emirates");
-                            //   } else {
-                            //     setAirlines("");
-                            //   }
-                            // }}
+                            onChange={(e) => {
+                              if (e.target.checked) {
+                                setAirline("Fly Emirates");
+                              } else {
+                                setAirline("");
+                              }
+                            }}
                           />
                         </li>
                       </ul>
@@ -569,13 +585,13 @@ const SearchBooking = () => {
                               background: "white",
                               border: "none",
                             }}
-                            // placeholder={"$" + value[0] * 100 + ",00"}
+                            placeholder={"$" + value[0] * 100 + ",00"}
                             className="form-control"
                             disabled
                           />
                           <input
                             type="text"
-                            // placeholder={"$" + value[1] * 100 + ",00"}
+                            placeholder={"$" + value[1] * 100 + ",00"}
                             className="form-control "
                             style={{
                               width: "30%",
