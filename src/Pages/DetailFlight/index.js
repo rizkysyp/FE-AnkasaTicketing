@@ -3,7 +3,6 @@ import "./index.module.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import NavbarComponent from "../../Components/base/header/index";
 import Fly from "../../Assets/img/fly.png";
-import Garuda from "../../Assets/img/garuda.png";
 import Plan from "../../Assets/img/plan.png";
 import Aten from "../../Assets/img/atten.png";
 import Footer from "../../Components/base/footer";
@@ -13,7 +12,6 @@ import { getTicket, postOrder } from "../../Config/redux/actions/detailFlight";
 
 function DetailFlightPage() {
   const { data } = useSelector((state) => state.detailFlight);
-  // console.log(data);
 
   const id = "prof";
   const dispatch = useDispatch();
@@ -22,7 +20,6 @@ function DetailFlightPage() {
 
   const [dataDetailFlight, setDataDetailFlight] = useState({});
   const [profile, setProfile] = useState({});
-  const [order, setOrder] = useState({});
 
   const handleData = (e) => {
     e.preventDefault();
@@ -31,9 +28,9 @@ function DetailFlightPage() {
     const ticketId = searchParams.get("id");
     const dataPost = {
       ...dataDetailFlight,
-      id_airlines: data.id,
+      id_airlines: data.id_airlines,
       id_users: profile.id,
-      id_ticket: ticketId,
+      id_tickets: ticketId,
     };
     dispatch(postOrder(dataPost, token));
   };
@@ -55,10 +52,10 @@ function DetailFlightPage() {
   }, []);
 
   return (
-    <div className="body">
+    <div className="body ">
       <NavbarComponent />
       <div
-        className="container-fluid mb-5"
+        className="-fluid mb-5 p-4 "
         style={{
           backgroundColor: " #2395FF",
           height: "9rem",
@@ -99,7 +96,7 @@ function DetailFlightPage() {
 
         <Row>
           <Col>
-            <div className="container m-3">
+            <div className=" m-3">
               <div
                 className="card"
                 style={{
@@ -184,7 +181,7 @@ function DetailFlightPage() {
             >
               Passenger Details
             </h4>
-            <div className="container m-4">
+            <div className=" m-4">
               <div
                 className="card"
                 style={{
@@ -257,8 +254,8 @@ function DetailFlightPage() {
                     }}
                   >
                     <option>Open Title</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
+                    <option value="Mr.">MR.</option>
+                    <option value="Mrs.">MRS.</option>
                   </Form.Select>
                   <h5
                     className="text-secondary text-start mt-3"
@@ -267,12 +264,11 @@ function DetailFlightPage() {
                     Full Name
                   </h5>
                   <input
-                    type="Name"
+                    name="name"
                     className="form-control"
-                    name="Name"
                     placeholder=""
                     onChange={(e) => handleChange(e)}
-                    value={dataDetailFlight.fullname}
+                    value={dataDetailFlight.name}
                     autoFocus
                     style={{ marginLeft: "2rem", width: "47rem" }}
                   />
@@ -285,7 +281,7 @@ function DetailFlightPage() {
                   <Form.Select
                     name="country"
                     onChange={(e) => handleChange(e)}
-                    value={dataDetailFlight.country}
+                    value={dataDetailFlight.negara}
                     autoFocus
                     style={{
                       marginLeft: "2rem",
@@ -310,7 +306,7 @@ function DetailFlightPage() {
               >
                 Passenger Details
               </h4>
-              <div className="container m-2 mt-4">
+              <div className=" m-2 mt-4">
                 <div
                   className="card"
                   style={{
@@ -377,7 +373,7 @@ function DetailFlightPage() {
           </Col>
           <Col>
             <div>
-              <div className="row container m-3">
+              <div className="row  m-3">
                 <div
                   className="card"
                   style={{
@@ -388,7 +384,7 @@ function DetailFlightPage() {
                 >
                   <Row>
                     <Col>
-                      <div className="container mt-4 mb-1">
+                      <div className=" mt-4 mb-1">
                         <img src={data.airlines_logo} alt="" width={120} />
                       </div>
                     </Col>
