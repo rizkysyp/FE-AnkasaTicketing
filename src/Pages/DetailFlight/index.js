@@ -3,7 +3,6 @@ import "./index.module.css";
 import { Row, Col, Container, Form, Accordion, Button } from "react-bootstrap";
 import NavbarComponent from "../../Components/base/header/index";
 import Fly from "../../Assets/img/fly.png";
-// import Garuda from "../../Assets/img/garuda.png";
 import Plan from "../../Assets/img/plan.png";
 import Aten from "../../Assets/img/atten.png";
 import Footer from "../../Components/base/footer";
@@ -13,7 +12,6 @@ import { getTicket, postOrder } from "../../Config/redux/actions/detailFlight";
 
 function DetailFlightPage() {
   const { data } = useSelector((state) => state.detailFlight);
-  // console.log(data);
 
   const id = "prof";
   const dispatch = useDispatch();
@@ -22,7 +20,6 @@ function DetailFlightPage() {
 
   const [dataDetailFlight, setDataDetailFlight] = useState({});
   const [profile, setProfile] = useState({});
-  // const [order, setOrder] = useState({});
 
   const handleData = (e) => {
     e.preventDefault();
@@ -33,9 +30,8 @@ function DetailFlightPage() {
       ...dataDetailFlight,
       id_airlines: data.id_airlines,
       id_users: profile.id,
-      id_ticket: ticketId,
+      id_tickets: ticketId,
     };
-    // console.log(data);
     dispatch(postOrder(dataPost, token));
   };
 
@@ -59,7 +55,7 @@ function DetailFlightPage() {
     <div className="body ">
       <NavbarComponent />
       <div
-        className="-fluid mb-5 p-5 "
+        className="-fluid mb-5 p-4 "
         style={{
           backgroundColor: " #2395FF",
           height: "9rem",
@@ -258,8 +254,8 @@ function DetailFlightPage() {
                     }}
                   >
                     <option>Open Title</option>
-                    <option value="Mr.">Mr.</option>
-                    <option value="Mrs.">Mrs.</option>
+                    <option value="Mr.">MR.</option>
+                    <option value="Mrs.">MRS.</option>
                   </Form.Select>
                   <h5
                     className="text-secondary text-start mt-3"
@@ -268,12 +264,11 @@ function DetailFlightPage() {
                     Full Name
                   </h5>
                   <input
-                    type="Name"
+                    name="name"
                     className="form-control"
-                    name="Name"
                     placeholder=""
                     onChange={(e) => handleChange(e)}
-                    value={dataDetailFlight.fullname}
+                    value={dataDetailFlight.name}
                     autoFocus
                     style={{ marginLeft: "2rem", width: "47rem" }}
                   />
@@ -286,7 +281,7 @@ function DetailFlightPage() {
                   <Form.Select
                     name="country"
                     onChange={(e) => handleChange(e)}
-                    value={dataDetailFlight.country}
+                    value={dataDetailFlight.negara}
                     autoFocus
                     style={{
                       marginLeft: "2rem",
