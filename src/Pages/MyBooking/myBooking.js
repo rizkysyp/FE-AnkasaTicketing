@@ -170,7 +170,7 @@ export default function MyBooking({
             </div>
             <div class="card p-3 shadow p-2 mb-3 bg-body rounded">
               <div className="card-body mb-2">
-                <p>{ticket.departure} ...Monday, 20 July 20- 12:30</p>
+                {/* <p>{ticket.departure} ...Monday, 20 July 20- 12:30</p> */}
                 <div className="d-flex justify-content-start">
                   <h5>
                     <b>IDN</b>
