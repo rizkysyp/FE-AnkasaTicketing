@@ -28,7 +28,7 @@ function DetailFlightPage() {
     const ticketId = searchParams.get("id");
     const dataPost = {
       ...dataDetailFlight,
-      id_airlines: data.id_airlines,
+      id_airlines: data?.id_airlines,
       id_users: profile.id,
       id_tickets: ticketId,
     };
@@ -254,8 +254,8 @@ function DetailFlightPage() {
                     }}
                   >
                     <option>Open Title</option>
-                    <option value="Mr.">MR.</option>
-                    <option value="Mrs.">MRS.</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
                   </Form.Select>
                   <h5
                     className="text-secondary text-start mt-3"
@@ -385,7 +385,7 @@ function DetailFlightPage() {
                   <Row>
                     <Col>
                       <div className=" mt-4 mb-1">
-                        <img src={data.airlines_logo} alt="" width={120} />
+                        <img src={data?.airlines_logo} alt="" width={120} />
                       </div>
                     </Col>
                     <Col>
@@ -403,7 +403,7 @@ function DetailFlightPage() {
                             fontWeight: "bold",
                           }}
                         >
-                          {data.airlines_name}
+                          {data?.airlines_name}
                         </h4>
                       </div>
                     </Col>
@@ -423,7 +423,7 @@ function DetailFlightPage() {
                           onChange={(e) => handleChange(e)}
                           style={{}}
                         >
-                          Medan (IDN)
+                          {data?.arrival_name} ({data?.arrival_code})
                         </h4>
                       </div>
                     </Col>
@@ -438,7 +438,9 @@ function DetailFlightPage() {
                         onChange={(e) => handleChange(e)}
                         style={{ width: "16rem" }}
                       >
-                        <h4 className="flight">Tokyo (JPN)</h4>
+                        <h4 className="flight">
+                          {data?.departure_name} ({data?.departure_code})
+                        </h4>
                       </div>
                     </Col>
                   </Row>
@@ -451,16 +453,23 @@ function DetailFlightPage() {
                     style={{ width: "80rem", marginLeft: "2rem" }}
                   >
                     <Col>
-                      <div>
+                      <div style={{ width: "16rem" }}>
                         <p onChange={(e) => handleChange(e)}>
-                          {data.departure_full}
+                          {data?.departure_full}
                         </p>
                       </div>
                     </Col>
                     <Col>
                       <div>
                         <p onChange={(e) => handleChange(e)}>
-                          {data.arrival_time}
+                          {data?.departure_time}
+                        </p>
+                      </div>
+                    </Col>
+                    <Col>
+                      <div>
+                        <p onChange={(e) => handleChange(e)}>
+                          {data?.arrival_time}
                         </p>
                       </div>
                     </Col>
@@ -545,13 +554,13 @@ function DetailFlightPage() {
                                     <hr />
                                   </Col>
                                   <Col>
-                                    <h6>{data.price}</h6>
+                                    <h6>{data?.price}</h6>
                                     <hr />
-                                    <h6>{data.stock}</h6>
+                                    <h6>{data?.stock}</h6>
                                     <hr />
-                                    <h6>{data.stock}</h6>
+                                    <h6>{data?.stock}</h6>
                                     <hr />
-                                    <h6>{data.price}</h6>
+                                    <h6>{data?.price}</h6>
                                     <hr />
                                   </Col>
                                 </Row>
