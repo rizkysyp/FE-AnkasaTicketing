@@ -462,14 +462,7 @@ function DetailFlightPage() {
                     <Col>
                       <div>
                         <p onChange={(e) => handleChange(e)}>
-                          {data?.departure_time}
-                        </p>
-                      </div>
-                    </Col>
-                    <Col>
-                      <div>
-                        <p onChange={(e) => handleChange(e)}>
-                          {data?.arrival_time}
+                          {data?.arrival_time} - {data?.departure_time}
                         </p>
                       </div>
                     </Col>
