@@ -26,7 +26,7 @@ const Login = () => {
       try {
         dispatch(loginUser(values, navigate));
         // swal("Login Succes!", "success anda berhasil login", "success");
-        // navigate("/");
+        // navigate("/DetailFlight");
       } catch (error) {
         swal.fire({
           title: "Error!",
@@ -61,7 +61,9 @@ const Login = () => {
               onSubmit={formik.handleSubmit}
               className="flex-column d-flex "
             >
-              <h1 className="container d-flex align-items-start">Login</h1>
+              <h2 className="container d-flex align-items-start text-primary">
+                Login
+              </h2>
               <input
                 type="email"
                 name="email"
@@ -93,9 +95,11 @@ const Login = () => {
               </button>{" "}
               <div>
                 <p>Did you forget your password?</p>
-                <Link to="/forgetpw">Tap here for reset</Link>
+                <Link to="/forgetpw">Forgot Password</Link>
                 <br />
-                <Link to="/register">Register</Link>
+                <Link style={{ marginTop: "1rem" }} to="/register">
+                  Register
+                </Link>
                 <hr />
               </div>
             </form>
