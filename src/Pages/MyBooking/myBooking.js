@@ -23,22 +23,18 @@ import b3 from '../../Assets/img/b3.png'
 export default function MyBooking() {
     const { profile } = useSelector((state) => state.profile);
     const { ticket } = useSelector((state) => state.ticket);
+    console.log(ticket, 'ini data ticket')
     const dispatch = useDispatch();
     const navigate = useNavigate();
-    console.log(ticket)
-    const paymentStatus = ticket.filter( e => e.payment === 0)
-    console.log(paymentStatus)
-
-    useEffect(() => {
-        const localdata = localStorage.getItem("Ankasa");
-        const { token } = JSON.parse(localdata);
-        dispatch(detailProfile(token));
-    }, []);
+    
+    // const paymentStatus = ticket.filter( e => e.payment === 0)
+    // console.log(paymentStatus)
 
     useEffect(() => {
         const localdata = localStorage.getItem("Ankasa");
         const { token } = JSON.parse(localdata);
         dispatch(bookingTiket(token));
+        dispatch(detailProfile(token));
     }, []);
 
 
@@ -121,7 +117,8 @@ export default function MyBooking() {
                                 </div>
                             </div>
                         </div> 
-                        {ticket.map((tiket) => (
+                        { ticket?.length >= 1  ? ticket.map((tiket)=>   {return (
+                        // {ticket.map((tiket) => (
                             <div className="card p-3 shadow p-2 mb-3 bg-body rounded" key={tiket.id}>
                                 <div className="card-body mb-2">
                                     <p>{tiket.departure} ...Monday, 20 July 20- 12:30</p>
@@ -133,11 +130,10 @@ export default function MyBooking() {
                                     <p> {tiket.airlines_names},  {tiket.code}</p>
                                     <hr />
                                     <div className='d-flex justify-content-between'>
-                                        
                                             <div className='d-flex'>
                                                 <p className=''><b>Status</b></p>
-
-                                                { paymentStatus ? 
+                                                 {tiket.payment === 0 ? 
+                                                // { paymentStatus ? 
                                                 <Link to='/' style={{ textDecoration: 'none' }}>  
                                                     <button className='mx-5  text-white btn '
                                                     style={{ backgroundColor: '#FF7F23' }}><b>Waiting for payment</b>
@@ -155,7 +151,8 @@ export default function MyBooking() {
                                     </div>
                                 </div>
                             </div>
-                        ))}
+                        // ))}
+                        )}) : 'not data '}
                     </div>
                 </div>
             </div>

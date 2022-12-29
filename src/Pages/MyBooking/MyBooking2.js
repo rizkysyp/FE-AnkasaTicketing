@@ -1,8 +1,23 @@
 import React from 'react'
 import NavbarComponent from '../../Components/base/header'
 import Footer from '../../Components/base/footer'
+import { useParams, useNavigate } from 'react-router-dom'
+import { updatePayment } from "../../Config/redux/actions/updatePayment";
+import { useDispatch } from "react-redux";
+
+
 
 export default function MyBooking2() {
+    const {id} = useParams()
+    const navigate = useNavigate()
+    const dispatch = useDispatch();
+
+    const updatepayment = () => {
+        const localdata = localStorage.getItem("Ankasa");
+        const { token } = JSON.parse(localdata);
+        dispatch(updatePayment(id, token, navigate));
+    }
+
     return (
         <div>
             <div className='container'>
@@ -66,7 +81,7 @@ export default function MyBooking2() {
 
                             </div>
                             <div className='text-center p-2'>
-                                <button className='btn btn-primary col-12 '>Try it free 30 days</button>
+                                <button className='btn btn-primary col-12 ' onClick={updatepayment}>Try it free 30 days</button>
                                 <a href='#'> Have a promo code</a>
                             </div>
                         </div>
