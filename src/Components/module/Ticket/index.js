@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import Image from "../../../Assets/img";
 import style from "./cardStyleTicket.module.css";
 
@@ -99,7 +100,12 @@ const Ticket = ({
               /pax
             </p>
           </div>
-          <button className={style.btnSelect} onClick={onClick}>
+          <button
+            className={style.btnSelect}
+            onClick={onClick}
+            // as={Link}
+            // to={`/DetailFlight?id=${item.id}`}
+          >
             Select
           </button>
         </div>

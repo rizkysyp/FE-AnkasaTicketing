@@ -8,11 +8,11 @@ import Ticket from "../../Components/module/Ticket";
 import HeaderSearch from "../../Components/base/header/search";
 import axios from "axios";
 import swal from "sweetalert";
-const SearchBooking = () => {
+
+const SearchBooking = (props) => {
   const [data, setData] = useState([]);
-  const [sortBy, setSortBy] = useState("name");
-  const [sort, setSort] = useState("asc");
   const [selected, setSelected] = useState(null);
+
   const navigate = useNavigate();
 
   const initialState = {
@@ -34,15 +34,15 @@ const SearchBooking = () => {
   const [dispatch] = useReducer(reducer, {});
 
   const handleClickTiket = (id) => {
-    navigate("/DetailFlight");
-    dispatch({ type: "GWT_TICKET_ID", payload: id });
+    navigate(`/DetailFlight?id=${id}`);
+    // dispatch({ type: "GWT_TICKET_ID", payload: id });
   };
 
   useEffect(() => {
     getData();
   }, []);
 
-  //search param
+  //search filter
   const [query] = useSearchParams();
   const queryTransit = query.get("transit") ? query.get("transit") : "";
   const queryFacilities = query.get("facilities")
@@ -65,7 +65,7 @@ const SearchBooking = () => {
 
   console.log(transit);
 
-  const search = (e) => {
+  const searchfilter = (e) => {
     e.preventDefault();
     setIsFilter(true);
     dispatch(
@@ -93,16 +93,8 @@ const SearchBooking = () => {
     setMaxPrice(values[1]);
   };
 
-  const reset = () => {
-    setTransit("");
-    setFacilities("");
-    setDeparture("");
-    setArrive("");
-    setAirline("");
-  };
-
   //end of search
-  // let tiket = `https://flyer-be-production.up.railway.app/ticket?transit=${transit}&facilities=${facilities}&departure=${departure}&arrive=${arrive}&airline=${airline}&min_price=${minPrice}&max_price=${maxPrice}`;
+  let url = `https://flyer-be-production.up.railway.app/ticket`;
   const getData = (
     transit = "",
     facilities = "",
@@ -114,14 +106,14 @@ const SearchBooking = () => {
   ) => {
     axios
       .get(
-        `https://flyer-be-production.up.railway.app/ticket?transit=${transit}&facilities=${facilities}&departure=${departure}&arrive=${arrive}&airline=${airline}&min_price=${minPrice}&max_price=${maxPrice}`
+        url
+        // `https://flyer-be-production.up.railway.app/ticket?transit=${transit}&facilities=${facilities}&departure=${departure}&arrive=${arrive}&airline=${airline}&min_price=${minPrice}&max_price=${maxPrice}`
       )
       .then((res) => {
         console.log("get data success");
         console.log(res.data.data);
         res.data.data && setData(res.data.data);
         setSelected(null);
-        // dispatch({ type: "GET_TICKET_ID", payload: res.data });
       })
       .catch((err) => {
         swal({
@@ -133,16 +125,55 @@ const SearchBooking = () => {
         setData([]);
       });
   };
+
+  //sorting
+  const [sortState, setSortState] = useState("");
+
+  //pagination and sort
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
+  const [limit, setLimit] = useState(5);
+
+  useEffect(() => {
+    if (limit !== "5") {
+      url = `${url}?limit=${limit}`;
+    } else {
+      url = `${url}&limit=5`;
+    }
+    if (page !== "1") {
+      url = `${url}&page=${page}`;
+    }
+    if (search !== "") {
+      url = `${url}&search=${search}`;
+    }
+    getData(url);
+  }, [search, limit, page]);
+
+  const resetFilter = () => {
+    setSearch("");
+  };
+
+  const nextPage = () => {
+    setPage(page + 1);
+  };
+
+  const previousPage = () => {
+    setPage(page - 1);
+  };
+  //pagination
   return (
     <div className="p-5">
       <nav>
-        <NavbarComponent />
+        <NavbarComponent
+          id="search"
+          search={(e) => setSearch(e.target.value.toLowerCase())}
+        />
       </nav>
       <main>
         <div className="row">
           <HeaderSearch
             onClick={(e) => {
-              search(e);
+              searchfilter(e);
             }}
           />
           {/*filter*/}
@@ -153,7 +184,7 @@ const SearchBooking = () => {
               </h5>
               <button
                 className="btn btn-transparent text-primary"
-                onClick={reset}
+                onClick={resetFilter}
               >
                 <b>Reset</b>
               </button>
@@ -191,9 +222,9 @@ const SearchBooking = () => {
                             value="direct"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setTransit("direct");
+                                setSearch("direct");
                               } else {
-                                setTransit("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -205,9 +236,9 @@ const SearchBooking = () => {
                             value="direct"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setTransit("transit1");
+                                setSearch("transit1");
                               } else {
-                                setTransit("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -218,9 +249,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setTransit("transit2");
+                                setSearch("transit2");
                               } else {
-                                setTransit("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -262,9 +293,9 @@ const SearchBooking = () => {
                             value="direct"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setFacilities("luggage");
+                                setSearch("luggage");
                               } else {
-                                setFacilities("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -276,9 +307,9 @@ const SearchBooking = () => {
                             value="direct"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setFacilities("meal");
+                                setSearch("meal");
                               } else {
-                                setFacilities("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -289,9 +320,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setFacilities("wifi");
+                                setSearch("wifi");
                               } else {
-                                setFacilities("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -333,9 +364,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setDeparture("mid");
+                                setSearch("mid");
                               } else {
-                                setDeparture("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -346,9 +377,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setDeparture("morning");
+                                setSearch("morning");
                               } else {
-                                setDeparture("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -359,9 +390,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setDeparture("afternoon");
+                                setSearch("afternoon");
                               } else {
-                                setDeparture("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -372,9 +403,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setDeparture("night");
+                                setSearch("night");
                               } else {
-                                setDeparture("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -416,9 +447,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setArrive("mid");
+                                setSearch("mid");
                               } else {
-                                setArrive("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -429,9 +460,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setArrive("morning");
+                                setSearch("morning");
                               } else {
-                                setArrive("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -442,9 +473,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setArrive("afternoon");
+                                setSearch("afternoon");
                               } else {
-                                setArrive("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -455,9 +486,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setArrive("night");
+                                setSearch("night");
                               } else {
-                                setArrive("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -499,9 +530,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setAirline("Garuda Indonesia");
+                                setSearch("Garuda Indonesia");
                               } else {
-                                setAirline("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -512,9 +543,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setAirline("Air Asia");
+                                setSearch("Air Asia");
                               } else {
-                                setAirline("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -525,9 +556,9 @@ const SearchBooking = () => {
                             type="checkbox"
                             onChange={(e) => {
                               if (e.target.checked) {
-                                setAirline("Fly Emirates");
+                                setSearch("Fly Emirates");
                               } else {
-                                setAirline("");
+                                setSearch("");
                               }
                             }}
                           />
@@ -625,48 +656,90 @@ const SearchBooking = () => {
                   </b>{" "}
                 </h5>
               </div>
-              <button className="btn btn-transparent ">
-                <b>Sort By</b>
+              {/* <button
+                className="btn btn-transparent "
+                defaultValue={"DEFAULT"}
+                onChange={(e) => setSortState(e.target.value)}
+              >
+                <option value="DEFAULT" disabled>
+                  Sort By
+                </option>
                 <svg
                   width="17"
                   height="17"
                   viewBox="0 0 17 17"
                   fill="none"
                   xmlns="http://www.w3.org/2000/svg"
+                  value="ascending"
                 >
                   <path
                     d="M12.3097 16.6888L9.43312 13.8123C9.22563 13.6048 9.1219 13.3329 9.1219 13.0609C9.1219 12.789 9.22563 12.5171 9.43312 12.3096C9.84806 11.8947 10.5208 11.8947 10.9357 12.3096L11.9985 13.3724L11.9985 2.23291C11.9985 1.64611 12.4742 1.17041 13.061 1.17041C13.6478 1.17041 14.1235 1.64611 14.1235 2.23291L14.1235 13.3724L15.1862 12.3096C15.6011 11.8947 16.2739 11.8947 16.6888 12.3096C17.1037 12.7246 17.1037 13.3973 16.6888 13.8123L13.8122 16.6888C13.3973 17.1037 12.7246 17.1037 12.3097 16.6888ZM5.00156 14.186L5.00156 3.62761L6.06429 4.69037C6.47923 5.10528 7.15196 5.10528 7.5669 4.69037C7.98184 4.2754 7.98184 3.6027 7.5669 3.18773L4.69035 0.311179C4.27541 -0.103727 3.60268 -0.103727 3.18774 0.311179L0.31119 3.18773C0.103704 3.39522 -2.30485e-05 3.66712 -2.30604e-05 3.93905C-2.30723e-05 4.21099 0.103704 4.48289 0.311189 4.69037C0.726129 5.10528 1.39886 5.10528 1.8138 4.69037L2.87653 3.62761L2.87653 14.186C2.87653 14.7728 3.35223 15.2485 3.93903 15.2485C4.52583 15.2485 5.00156 14.7728 5.00156 14.186Z"
                     fill="black"
                   />
                 </svg>
-              </button>
+              </button> */}
+              <select
+                className="btn btn-transparent "
+                defaultValue={"DEFAULT"}
+                onChange={(e) => setSortState(e.target.value)}
+              >
+                <option value="DEFAULT" disabled>
+                  Sort By
+                </option>
+                <option value="ascending">Sort By Asc</option>
+                <option value="descending">Sort By Desc</option>
+              </select>
             </div>
             <div>
               {data.length >= 1
-                ? data.map((item) => (
-                    <div className="card mb-3">
-                      <Ticket
-                        key={item.id}
-                        logo={item.airlines_logo}
-                        airlines_names={item.airlines_name}
-                        departure_city={item.departure_name}
-                        departure_code={item.departure_code}
-                        arrival_city={item.arrival_name}
-                        arrival_code={item.arrival_code}
-                        departure={item.departure_time}
-                        arrive={item.arrival_time}
-                        price={item.price}
-                        transit={item.stock}
-                        // onClick={
-                        //   item.id == selected
-                        //     ? () => setSelected(null)
-                        //     : () => (setSelected(item.id), select(item))
-                        // }
-                        onClick={() => handleClickTiket(item.id)}
-                      />
-                    </div>
-                  ))
+                ? data
+                    .sort((a, b) => (a.itemM > b.itemM ? 1 : -1))
+                    .map((item, i) => (
+                      <div className="card mb-3" key={i}>
+                        <Ticket
+                          key={item.id}
+                          logo={item.airlines_logo}
+                          airlines_names={item.airlines_name}
+                          departure_city={item.departure_name}
+                          departure_code={item.departure_code}
+                          arrival_city={item.arrival_name}
+                          arrival_code={item.arrival_code}
+                          departure={item.departure_time}
+                          arrive={item.arrival_time}
+                          price={String(item.price)
+                            .split("")
+                            .reverse()
+                            .join("")
+                            .match(/.{1,3}/g)
+                            .join(".")
+                            .split("")
+                            .reverse()
+                            .join("")}
+                          transit={item.stock}
+                          // onClick={
+                          //   item.id == selected
+                          //     ? () => setSelected(null)
+                          //     : () => (setSelected(item.id), select(item))
+                          // }
+                          onClick={() => handleClickTiket(item.id)}
+                          // onClick={`/DetailFlight?id=${item.id}`}
+                        />
+                      </div>
+                    ))
                 : "Ticket not found"}
+
+              <div className="d-flex flex-row gap-5 mt-5 mb-5">
+                <div>
+                  <button disabled={page === 1} onClick={previousPage}>
+                    Prev
+                  </button>
+                </div>
+                <div>
+                  <button disabled={data <= 0} onClick={nextPage}>
+                    Next
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
         </div>

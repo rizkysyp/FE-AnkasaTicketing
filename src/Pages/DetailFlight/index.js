@@ -6,12 +6,15 @@ import Fly from "../../Assets/img/fly.png";
 import Plan from "../../Assets/img/plan.png";
 import Aten from "../../Assets/img/atten.png";
 import Footer from "../../Components/base/footer";
+import { useNavigate } from "react-router-dom";
+
 import { useSearchParams } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { getTicket, postOrder } from "../../Config/redux/actions/detailFlight";
 
 function DetailFlightPage() {
   const { data } = useSelector((state) => state.detailFlight);
+  const navigate = useNavigate();
 
   const id = "prof";
   const dispatch = useDispatch();
@@ -28,11 +31,11 @@ function DetailFlightPage() {
     const ticketId = searchParams.get("id");
     const dataPost = {
       ...dataDetailFlight,
-      id_airlines: data.id_airlines,
+      id_airlines: data?.id_airlines,
       id_users: profile.id,
       id_tickets: ticketId,
     };
-    dispatch(postOrder(dataPost, token));
+    dispatch(postOrder(dataPost, token, navigate));
   };
 
   const handleChange = (e) => {
@@ -385,7 +388,7 @@ function DetailFlightPage() {
                   <Row>
                     <Col>
                       <div className=" mt-4 mb-1">
-                        <img src={data.airlines_logo} alt="" width={120} />
+                        <img src={data?.airlines_logo} alt="" width={120} />
                       </div>
                     </Col>
                     <Col>
@@ -403,7 +406,7 @@ function DetailFlightPage() {
                             fontWeight: "bold",
                           }}
                         >
-                          {data.airlines_name}
+                          {data?.airlines_name}
                         </h4>
                       </div>
                     </Col>
@@ -453,14 +456,14 @@ function DetailFlightPage() {
                     <Col>
                       <div>
                         <p onChange={(e) => handleChange(e)}>
-                          {data.departure_full}
+                          {data?.departure_full}
                         </p>
                       </div>
                     </Col>
                     <Col>
                       <div>
                         <p onChange={(e) => handleChange(e)}>
-                          {data.arrival_time}
+                          {data?.arrival_time}
                         </p>
                       </div>
                     </Col>
@@ -545,13 +548,13 @@ function DetailFlightPage() {
                                     <hr />
                                   </Col>
                                   <Col>
-                                    <h6>{data.price}</h6>
+                                    <h6>{data?.price}</h6>
                                     <hr />
-                                    <h6>{data.stock}</h6>
+                                    <h6>{data?.stock}</h6>
                                     <hr />
-                                    <h6>{data.stock}</h6>
+                                    <h6>{data?.stock}</h6>
                                     <hr />
-                                    <h6>{data.price}</h6>
+                                    <h6>{data?.price}</h6>
                                     <hr />
                                   </Col>
                                 </Row>

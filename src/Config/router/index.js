@@ -19,9 +19,7 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
-
         <Route path="/DetailFlight" element={<DetailFlight />} />
-        <Route path="/MyBooking" element={<MyBarcode />} />
         <Route path="/Login" element={<Login />} />
         <Route path="/logo" element={<LogoLogin />} />
         <Route path="/register" element={<Register />} />

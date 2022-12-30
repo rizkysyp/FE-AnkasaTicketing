@@ -7,11 +7,11 @@ import { Link, NavLink } from "react-router-dom";
 import MyModalTicket from "../modal/modalChat";
 import MyVerticallyCenteredModal from "../modal/modalNotif";
 import MydModalWithGrid from "../modal/modalTiket";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { detailProfile } from "../../../Config/redux/actions/profile";
 
-function NavbarComponent() {
+function NavbarComponent({ search, submitSearch, id }) {
   const token = localStorage.getItem("Ankasa");
   const { profile } = useSelector((state) => state.profile);
 
@@ -44,12 +44,36 @@ function NavbarComponent() {
           </NavLink>
         </div>
         <div className="col-lg-4 d-flex align-content-center flex-wrap">
-          <Form.Control
+          {/* <Form.Control
             className=""
             type="search"
             placeholder="Where you want to go?"
             aria-label="Search"
+            onChange={search}
+            onSubmit={submitSearch}
           />
+           */}
+          <form onSubmit={submitSearch}>
+            <div className="field has-addons">
+              <div className="control is-expanded">
+                <input
+                  type="search"
+                  className="input"
+                  id={id}
+                  onChange={search}
+                  placeholder="Where you want to go?"
+                  aria-label="Search"
+                  name="search"
+                  required
+                />
+              </div>
+              <div className="control">
+                <button type="submit" className="button is-info">
+                  Search
+                </button>
+              </div>
+            </div>
+          </form>
         </div>
         <div className="col-lg-6 d-flex justify-content-end px-5">
           <Navbar expand="lg" className="">

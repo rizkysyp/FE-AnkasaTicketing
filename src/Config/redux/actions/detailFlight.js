@@ -47,7 +47,7 @@ export const getUserProf = (token) => async (dispatch) => {
   });
 };
 
-export const postOrder = (formData, token) => async (dispatch) => {
+export const postOrder = (formData, token, navigate) => async (dispatch) => {
   try {
     const result = await axios.post(
       `${process.env.REACT_APP_API_BACKEND}order`,
@@ -66,6 +66,7 @@ export const postOrder = (formData, token) => async (dispatch) => {
       text: `${result.data.message}`,
       icon: "success",
     });
+    navigate("/MyBooking");
   } catch (error) {
     console.log(error);
     swal({
