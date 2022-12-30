@@ -14,7 +14,7 @@ export const loginUser = (loginData, navigate) => async (dispatch) => {
     localStorage.setItem("Ankasa", JSON.stringify(dataLocal));
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
 
-    // navigate("/MyBooking3");
+    navigate("/");
     swal({
       title: "Good job!",
       text: `${result.data.message}`,

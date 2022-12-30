@@ -1,5 +1,5 @@
 import React from "react";
-import "./MyBooking.css";
+import "./myBooking.css";
 import Barcode from "react-barcode";
 import { Row, Col, Container } from "react-bootstrap";
 import Plan from "../../Assets/img/plan.png";
