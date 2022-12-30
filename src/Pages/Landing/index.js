@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect } from 'react'
 import { useSelector, useDispatch } from "react-redux";
 import { getAirport } from "../../Config/redux/actions/airport";
 import k7 from '../../Assets/img/k7.png'

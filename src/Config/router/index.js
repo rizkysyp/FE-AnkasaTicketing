@@ -10,6 +10,16 @@ import Profile from "../../Pages/Profile";
 import MyBooking from "../../Pages/MyBooking/myBooking";
 import MyBooking2 from "../../Pages/MyBooking/MyBooking2";
 import MyBarcode from "../../Pages/MyBooking/MyBooking3"
+import Admin from "../../Pages/TicketAdmin/admin";
+import InsertTicket from "../../Pages/TicketAdmin/insert";
+import UpdateTicketAll from "../../Pages/TicketAdmin/update";
+import GetAirlines from "../../Pages/AirlinesAdmin";
+import InsertAirlines from "../../Pages/AirlinesAdmin/insert";
+import UpdateAirlines from "../../Pages/AirlinesAdmin/update";
+import AdminBooking from "../../Pages/BookingAdmin";
+import Airport from "../../Pages/AirportAdmin";
+import InsertAirport from "../../Pages/AirportAdmin/insert";
+import UpdateAirport from "../../Pages/AirportAdmin/update";
 
 const Router = () => {
   return (
@@ -23,8 +33,18 @@ const Router = () => {
         <Route path="/otp" element={<VerifyOtp />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="/MyBooking" element={<MyBooking />} />
-        <Route path="/MyBooking2" element={<MyBooking2 />} />
+        <Route path="/payment/:id" element={<MyBooking2 />} />
         <Route path="/MyBarcode/:id" element={<MyBarcode />} />
+        <Route path="/Admin/ticket" element={<Admin />} />
+        <Route path="/Admin/ticket/insert" element={<InsertTicket />} />
+        <Route path="/Admin/ticket/update/:id" element={<UpdateTicketAll/>} />
+        <Route path="/Admin/airlines" element={<GetAirlines/>} />
+        <Route path="/Admin/airlines/insert" element={<InsertAirlines/>} />
+        <Route path="/Admin/airlines/update/:id" element={<UpdateAirlines/>} />
+        <Route path="/Admin/booking" element={<AdminBooking/>} />
+        <Route path="/Admin/airport" element={<Airport/>} />
+        <Route path="/Admin/airport/insert" element={<InsertAirport/>} />
+        <Route path="/Admin/airport/update/:id" element={<UpdateAirport/>} />
       </Routes>
     </BrowserRouter>
   );
