@@ -1,7 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import DetailFlight from "../../Pages/DetailFlight";
-import MyBarcode from "../../Pages/MyBooking/myBooking3";
+import MyBarcode from "../../Pages/MyBooking/MyBooking3";
 import Login from "../../Pages/Login";
 import LogoLogin from "../../Components/base/logo/logoAuth";
 import Register from "../../Pages/Register/customer";
@@ -10,7 +10,7 @@ import ForgetPw from "../../Pages/verifOtp/ForgetPw";
 import VerifyOtp from "../../Pages/verifOtp";
 import Landing from "../../Pages/Landing";
 import Profile from "../../Pages/Profile";
-import MyBooking from "../../Pages/MyBooking/myBooking";
+import MyBooking from "../../Pages/MyBooking/MyBooking";
 import MyBooking2 from "../../Pages/MyBooking/MyBooking2";
 import SearchBooking from "../../Pages/SearchBooking/searchbooking";
 import Ticket from "../../Components/module/Ticket";
