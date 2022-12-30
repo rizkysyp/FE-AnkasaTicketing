@@ -257,8 +257,8 @@ function DetailFlightPage() {
                     }}
                   >
                     <option>Open Title</option>
-                    <option value="Mr.">MR.</option>
-                    <option value="Mrs.">MRS.</option>
+                    <option value="Mr.">Mr.</option>
+                    <option value="Mrs.">Mrs.</option>
                   </Form.Select>
                   <h5
                     className="text-secondary text-start mt-3"
@@ -426,7 +426,7 @@ function DetailFlightPage() {
                           onChange={(e) => handleChange(e)}
                           style={{}}
                         >
-                          Medan (IDN)
+                          {data?.arrival_name} ({data?.arrival_code})
                         </h4>
                       </div>
                     </Col>
@@ -441,7 +441,9 @@ function DetailFlightPage() {
                         onChange={(e) => handleChange(e)}
                         style={{ width: "16rem" }}
                       >
-                        <h4 className="flight">Tokyo (JPN)</h4>
+                        <h4 className="flight">
+                          {data?.departure_name} ({data?.departure_code})
+                        </h4>
                       </div>
                     </Col>
                   </Row>
@@ -454,7 +456,7 @@ function DetailFlightPage() {
                     style={{ width: "80rem", marginLeft: "2rem" }}
                   >
                     <Col>
-                      <div>
+                      <div style={{ width: "16rem" }}>
                         <p onChange={(e) => handleChange(e)}>
                           {data?.departure_full}
                         </p>
@@ -463,7 +465,7 @@ function DetailFlightPage() {
                     <Col>
                       <div>
                         <p onChange={(e) => handleChange(e)}>
-                          {data?.arrival_time}
+                          {data?.arrival_time} - {data?.departure_time}
                         </p>
                       </div>
                     </Col>

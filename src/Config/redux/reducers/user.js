@@ -21,18 +21,34 @@ const userReducer = (state = initialState, action) => {
         ...state,
         isLoading: false,
       };
-    case "USER_REGISTER_PENDING":
+    case "USER_REGISTER_ADMIN_PENDING":
       return {
         ...state,
         isLoading: true,
       };
-    case "USER_REGISTER_SUCCESS":
+    case "USER_REGISTER_CUSTOMER_PENDING":
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case "USER_REGISTER_ADMIN_SUCCESS":
       return {
         ...state,
         user: action.payload,
         isLoading: false,
       };
-    case "USER_REGISTER_ERROR":
+    case "USER_REGISTER_CUSTOMER_SUCCESS":
+      return {
+        ...state,
+        user: action.payload,
+        isLoading: false,
+      };
+    case "USER_REGISTER_ADMIN_ERROR":
+      return {
+        ...state,
+        isLoading: false,
+      };
+    case "USER_REGISTER_CUSTOMER_ERROR":
       return {
         ...state,
         isLoading: false,
