@@ -14,7 +14,6 @@ export const loginUser = (loginData, navigate) => async (dispatch) => {
     localStorage.setItem("Ankasa", JSON.stringify(dataLocal));
     dispatch({ type: "USER_LOGIN_SUCCESS", payload: user });
 
-    navigate("/");
     swal({
       title: "Good job!",
       text: `${result.data.message}`,
@@ -22,8 +21,10 @@ export const loginUser = (loginData, navigate) => async (dispatch) => {
     }).then(() => {
       if (user.role == "admin") {
         console.log("ini admin");
+        navigate("/Admin/ticket");
       } else {
         console.log("ini customer");
+        navigate("/");
       }
     });
   } catch (error) {

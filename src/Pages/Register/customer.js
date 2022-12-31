@@ -61,11 +61,15 @@ const Register = () => {
         <div>
           <LogoLogin />
         </div>
-        <div className="d-flex mt-3 justify-content-center container mt-4">
+        <div className="d-flex justify-content-center container mt-4">
           <Button
             href="/Register"
             className="btn-primary btn-block btn-lg"
-            style={{ marginRight: "10px", borderRadius: "13px" }}
+            style={{
+              marginRight: "10px",
+              borderRadius: "13px",
+              height: "40px",
+            }}
           >
             Customer
           </Button>
@@ -73,7 +77,7 @@ const Register = () => {
             href="/RegisterAdmin"
             variant="outline-primary"
             className="btn btn-Light btn-block btn-lg "
-            style={{ borderRadius: "13px", width: "8rem" }}
+            style={{ borderRadius: "13px", width: "8rem", height: "40px" }}
           >
             Admin
           </Button>
@@ -144,7 +148,7 @@ const Register = () => {
             </form>
           </div>
 
-          <div className="container">
+          <div className="container d-flex flex-column align-items-center">
             <p>Already have an account?</p>
             <Link to="/login">
               <button

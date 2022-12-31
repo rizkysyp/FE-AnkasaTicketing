@@ -11,7 +11,7 @@ import swal from "sweetalert";
 
 const SearchBooking = (props) => {
   const [data, setData] = useState([]);
-  const [selected, setSelected] = useState(null);
+  const [setSelected] = useState(null);
 
   const navigate = useNavigate();
 
@@ -127,18 +127,18 @@ const SearchBooking = (props) => {
   };
 
   //sorting
-  const [sortState, setSortState] = useState("");
+  const [setSortState] = useState("");
 
-  //pagination and sort
+  //pagination
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
-  const [limit, setLimit] = useState(5);
+  const [limit] = useState(8);
 
   useEffect(() => {
-    if (limit !== "5") {
+    if (limit !== "8") {
       url = `${url}?limit=${limit}`;
     } else {
-      url = `${url}&limit=5`;
+      url = `${url}&limit=8`;
     }
     if (page !== "1") {
       url = `${url}&page=${page}`;
@@ -681,6 +681,7 @@ const SearchBooking = (props) => {
               <select
                 className="btn btn-transparent "
                 defaultValue={"DEFAULT"}
+                value={data.sortState}
                 onChange={(e) => setSortState(e.target.value)}
               >
                 <option value="DEFAULT" disabled>
@@ -691,11 +692,39 @@ const SearchBooking = (props) => {
               </select>
             </div>
             <div>
-              {data.length >= 1
+              <div className="d-flex flex-row gap-5 my-3 justify-content-end">
+                <div>
+                  <button
+                    style={{
+                      borderRadius: "8px",
+                      backgroundColor: "white",
+                      color: "#2395FF",
+                    }}
+                    disabled={page === 1}
+                    onClick={previousPage}
+                  >
+                    Prev
+                  </button>
+                </div>
+
+                <div>
+                  <button
+                    style={{
+                      borderRadius: "8px",
+                      backgroundColor: "white",
+                    }}
+                    disabled={data <= 0}
+                    onClick={nextPage}
+                  >
+                    Next
+                  </button>
+                </div>
+              </div>
+              {data.length
                 ? data
-                    .sort((a, b) => (a.itemM > b.itemM ? 1 : -1))
+                    .sort((a, b) => (a.item > b.item ? 1 : -1))
                     .map((item, i) => (
-                      <div className="card mb-3" key={i}>
+                      <div className="card mb-3" key={i.id}>
                         <Ticket
                           key={item.id}
                           logo={item.airlines_logo}
@@ -706,15 +735,7 @@ const SearchBooking = (props) => {
                           arrival_code={item.arrival_code}
                           departure={item.departure_time}
                           arrive={item.arrival_time}
-                          price={String(item.price)
-                            .split("")
-                            .reverse()
-                            .join("")
-                            .match(/.{1,3}/g)
-                            .join(".")
-                            .split("")
-                            .reverse()
-                            .join("")}
+                          price={item.price}
                           transit={item.stock}
                           // onClick={
                           //   item.id == selected
@@ -727,19 +748,6 @@ const SearchBooking = (props) => {
                       </div>
                     ))
                 : "Ticket not found"}
-
-              <div className="d-flex flex-row gap-5 mt-5 mb-5">
-                <div>
-                  <button disabled={page === 1} onClick={previousPage}>
-                    Prev
-                  </button>
-                </div>
-                <div>
-                  <button disabled={data <= 0} onClick={nextPage}>
-                    Next
-                  </button>
-                </div>
-              </div>
             </div>
           </div>
         </div>

@@ -105,7 +105,7 @@ const Login = () => {
             </form>
           </div>
 
-          <p>or sign in with</p>
+          <p className="d-flex justify-content-center">or sign in with</p>
           <div className="d-flex mt-10">
             <div className="d-flex justify-content-center">
               <img src="" alt="" />

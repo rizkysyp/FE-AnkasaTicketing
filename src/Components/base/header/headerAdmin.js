@@ -3,14 +3,11 @@ import Navbar from "react-bootstrap/Navbar";
 import "./style.css";
 import Image from "../../../Assets/img";
 import { Link, NavLink } from "react-router-dom";
-import MyModalTicket from "../modal/modalChat";
-import MyVerticallyCenteredModal from "../modal/modalNotif";
-import MydModalWithGrid from "../modal/modalTiket";
 import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { detailProfile } from "../../../Config/redux/actions/profile";
 
-function NavbarComponent({ search, submitSearch, id }) {
+function NavbarComponentAdmin({ search, submitSearch, id }) {
   const token = localStorage.getItem("Ankasa");
   const { profile } = useSelector((state) => state.profile);
 
@@ -32,7 +29,7 @@ function NavbarComponent({ search, submitSearch, id }) {
             style={{ width: "30px", marginRight: "10px" }}
           />
           <NavLink
-            to="/"
+            to="/Admin/ticket"
             style={{
               color: "black",
               fontWeight: "bold",
@@ -90,20 +87,8 @@ function NavbarComponent({ search, submitSearch, id }) {
           <Navbar expand="lg" className="">
             <Navbar.Toggle aria-controls="responsive-navbar-nav" />
             <Navbar.Collapse>
-              <button className="btn">
-                <MydModalWithGrid />
-              </button>
-              <NavLink
-                to="/MyBooking"
-                style={{ textDecoration: "none", color: "black" }}
-                className="px-lg-5 mt-lg-1"
-              >
-                <h6> My Booking</h6>
-              </NavLink>
               {token ? (
                 <div className=" px-lg-4 d-flex justify-content-end">
-                  <MyModalTicket />
-                  <MyVerticallyCenteredModal />
                   <Button variant="white" style={{ width: "4rem" }}>
                     <Link to="/profile">
                       <img
@@ -131,7 +116,7 @@ function NavbarComponent({ search, submitSearch, id }) {
                     </Button>
                   </Link>
 
-                  <Link to="/Register">
+                  <Link to="/RegisterAdmin">
                     <Button
                       className="btn-1  px-lg-4"
                       variant="outline-primary"
@@ -148,4 +133,4 @@ function NavbarComponent({ search, submitSearch, id }) {
     </div>
   );
 }
-export default NavbarComponent;
+export default NavbarComponentAdmin;

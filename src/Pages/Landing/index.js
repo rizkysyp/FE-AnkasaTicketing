@@ -11,6 +11,10 @@ import i3 from "../../Assets/img/i3.png";
 import Carousel from "../../Components/base/carousel";
 import Footer from "../../Components/base/footer";
 import NavbarComponent from "../../Components/base/header";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { getAirport } from "../../Config/redux/actions/airport";
+import i2 from "../../Assets/img/i2.png";
 
 export default function Landing() {
   return (

@@ -5,8 +5,9 @@ import ProfileCard from "../../Components/module/profileCard";
 import styles from "./Profile.module.css";
 import { useSelector, useDispatch } from "react-redux";
 import { detailProfile, editProfile } from "../../Config/redux/actions/profile";
+import NavbarComponentAdmin from "../../Components/base/header/headerAdmin";
 
-const Profile = () => {
+const Profile = (props) => {
   // const navigate = useNavigate();
   const { profile } = useSelector((state) => state.profile);
   const id = profile.id;
@@ -59,6 +60,7 @@ const Profile = () => {
     newdata[e.target.name] = e.target.value;
     setDataPofile(newdata);
   };
+  // const token = localStorage.getItem("Ankasa");
 
   useEffect(() => {
     const localdata = localStorage.getItem("Ankasa");
@@ -68,7 +70,13 @@ const Profile = () => {
 
   return (
     <div className={styles.pageProfile}>
-      <NavbarComponent />
+      <nav>
+        {profile.role === "admin" ? (
+          <NavbarComponentAdmin />
+        ) : (
+          <NavbarComponent />
+        )}
+      </nav>
       <form>
         <div className={styles.content}>
           <div className={styles.profileContent}>
