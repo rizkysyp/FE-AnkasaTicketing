@@ -1,127 +1,91 @@
-import React from "react";
+import { useEffect } from "react";
 import "./MyBooking.css";
 import Barcode from "react-barcode";
-import { Row, Col, Container } from "react-bootstrap";
 import Plan from "../../Assets/img/plan.png";
-import Garuda from "../../Assets/img/garuda.png";
+import { useSelector, useDispatch } from "react-redux";
+import { bookingTiketId } from "../../Config/redux/actions/bookingId";
+import { auto } from "@popperjs/core";
+import NavbarComponent from "../../Components/base/header";
+import Footer from "../../Components/base/footer";
+import { useParams } from "react-router-dom";
 
-function MyBarcode() {
+function MyBarcode(props) {
+  const { ticketId } = useSelector((state) => state.ticketId);
+  const dispatch = useDispatch();
+  const { id } = useParams();
+  console.log(id);
+  console.log(ticketId);
+
+  useEffect(() => {
+    const localdata = localStorage.getItem("Ankasa");
+    const { token } = JSON.parse(localdata);
+    dispatch(bookingTiketId(token, id));
+  }, []);
+
   return (
-    <div className="body">
-      <div
-        className="border "
-        style={{
-          height: "50rem",
-          width: "83%",
-          marginTop: "6rem",
-          marginBottom: "6rem",
-          marginLeft: "10%",
-          marginRight: "10%",
-          borderRadius: "10px",
-        }}
-      >
-        <div>
-          <h3
-            style={{
-              fontWeight: "bold",
-              paddingTop: "3rem",
-            }}
-          >
-            Booking Pass
-          </h3>
-        </div>
+    <div>
+      <NavbarComponent />
+      <div className="container-fluid bg-primary p-5">
         <div
-          className="border"
-          style={{
-            height: "38rem",
-            width: "50rem",
-            marginTop: "2rem",
-            marginBottom: "6rem",
-            marginLeft: "20%",
-            borderRadius: "10px",
-          }}
+          className="col-lg-8 offset-lg-2 bg-white p-5"
+          style={{ borderRadius: "5%" }}
         >
-          <Container>
-            <Row>
-              <Col>
-                <div className="mt-4">
-                  <img src={Garuda} alt="" width={120} height={90} />
+          <div className="d-flex justify-content-between">
+            <h4 className="mb-5">
+              <b>Booking Pass</b>
+            </h4>
+            <h5>:</h5>
+          </div>
+          <div className="container border">
+            <div className="row p-4">
+              <div className="col-9">
+                <div className="d-flex mb-5">
+                  {/* <img src={ticketId.airlines_names} alt="" width={120} height={auto} /> */}
+                  <p>{ticketId.airlines_names}</p>
+                  <h3 className="ms-5">
+                    <b>{ticketId.arrival_code}</b>
+                  </h3>
+                  <img
+                    src={Plan}
+                    height={auto}
+                    className=" img-fluid  mx-4"
+                    alt=""
+                  />
+                  <h3>
+                    <b>{ticketId.departure_code}</b>
+                  </h3>
                 </div>
-              </Col>
-              <Col>
-                <div
-                  className="fly"
-                  style={{
-                    width: "12rem",
-                    paddingLeft: "8rem",
-                  }}
-                >
-                  <h3 className="flight">IDN</h3>
+                <div className="d-flex mb-4" style={{}}>
+                  <div className="me-5">
+                    <h6>Code</h6>
+                    <h5>{ticketId.code}</h5>
+                  </div>
+                  <div className="ms-lg-5">
+                    <h6>Class</h6>
+                    <h5>{ticketId.type}</h5>
+                  </div>
                 </div>
-              </Col>
-              <Col>
-                <div className="fly">
-                  <img src={Plan} alt="" height={28} />
+
+                <div className="d-flex mb-4">
+                  <div className="me-5">
+                    <h6>Terminal</h6>
+                    <h4>{ticketId.terminal}</h4>
+                  </div>
+                  <div className="ms-lg-5">
+                    <h6>Gate</h6>
+                    <h4>{ticketId.gate}</h4>
+                  </div>
                 </div>
-              </Col>
-              <div
-                className="fly "
-                style={{
-                  width: "12rem",
-                  paddingRight: "14rem",
-                }}
-              >
-                <h3 className="flight">JPN</h3>
+                <h6>Departure</h6>
+                <h5>{ticketId.departure}</h5>
               </div>
-            </Row>
-            <Row>
-              <Col>
-                <div className="add text-secondary mt-5">
-                  <h6>Code</h6>
-                  <div className="text-dark">
-                    <h4>AB-221</h4>
-                  </div>
-                </div>
-              </Col>
-              <Col>
-                <div className="add text-secondary mt-4">
-                  <h6>Class</h6>
-                  <div className="text-dark">
-                    <h4>Economy</h4>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-            <Row>
-              <Col>
-                <div className="add text-secondary mt-4">
-                  <h6>Terminall</h6>
-                  <div className="text-dark">
-                    <h4>A</h4>
-                  </div>
-                </div>
-              </Col>
-              <Col>
-                <div className="add text-secondary mt-4">
-                  <h6>Gate</h6>
-                  <div className="text-dark">
-                    <h4>221</h4>
-                  </div>
-                </div>
-              </Col>
-            </Row>
-            <div className="add text-secondary mt-4 mb-5">
-              <h5>Departure</h5>
-              <div className="text-dark">
-                <h4>Monday, 20 July ‘20 - 12:33</h4>
-              </div>
+              <Barcode value={ticketId.id} />
+              <div className="col-lg-3 bg-primary"></div>
             </div>
-          </Container>
-          <div style={{ marginLeft: "1rem" }}>
-            <Barcode value="ALVIN JAMAL AZKYA" />
           </div>
         </div>
       </div>
+      <Footer />
     </div>
   );
 }
