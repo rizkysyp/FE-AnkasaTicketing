@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import "./MyBooking.css";
+import "./myBooking.css";
 import Barcode from "react-barcode";
 import Plan from "../../Assets/img/plan.png";
 import { useSelector, useDispatch } from "react-redux";
